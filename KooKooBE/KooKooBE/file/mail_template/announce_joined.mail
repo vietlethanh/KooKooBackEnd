@@ -1,0 +1,32 @@
+﻿{0} đã tham gia HelloChao.com
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>{0} trả lời tin nhắn của bạn</title>
+<style>
+body{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	margin-top:2px;
+}	
+</style>
+</head>
+<body>
+Hi {0},<br>
+<br>
+<b>{1}</b>, người có địa chỉ email là <b>{2}</b> mà bạn đã mời trước đây vừa tham gia <a href="http://www.hellochao.com">www.hellochao.com</a><br>
+<br>
+Để xem profile của <b>{1}</b>, bạn click vào link sau: <a href="{3}">{3}</a><br>
+<br>
+Để gửi tin nhắn cho <b>{1}</b>, bạn click vào link sau: <a href="{4}">{4}</a><br>
+<br>
+Nếu không thể mở link bạn vui lòng copy link và paste vào thanh địa chỉ của trình duyệt và ấn phím ENTER.<br>
+<br>
+Trân trọng,<br>
+<br>
+Ban quản trị<br>
+www.hellochao.com<br>
+----------------------------<br>
+Xin vui lòng đừng trả lời mail này.
+</body>
+</html>

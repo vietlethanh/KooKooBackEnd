@@ -1,0 +1,5 @@
+SUBJECT:
+{0}: Tên người dùng củ
+CONTENT:
+{0}: Tên người dùng củ
+{1}: Những thông tin đã bị thay đổi.

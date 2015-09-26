@@ -1,0 +1,7 @@
+﻿SUBJECT:
+{0}: Tên người gửi
+
+CONTENT:
+{0}: Tên người gửi
+{1}: Link đăng ký thành viên được giới thiệu từ {0}
+{2}: Link để xem profile của {0}

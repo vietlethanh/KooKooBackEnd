@@ -1,0 +1,46 @@
+#register-page
+{
+	min-height: 500px;  
+	
+	text-aign:center;	
+	form
+	{
+		padding:0px 0;
+		div.table-register
+		{
+			margin: auto;
+			padding: 15px;
+			width: 70%;
+			margin:auto;
+			.control-group
+			{
+				.controls
+				{
+					.radio
+					{
+						width: 50px;
+						display: inline-block;
+						input[type="radio"]
+						{
+							display: inline;
+							float: none;
+							vertical-align: top; 
+							margin-left: 0px;
+						}
+					}
+					.input-icon
+					{
+						.icon-envelope
+						{
+							margin-top: 6px;
+						}
+						#txtEmail
+						{
+							width: 204px;
+						}
+					}
+				}
+			}			
+		}
+	}
+} 

@@ -1,0 +1,31 @@
+Thông báo xóa bỏ bình luận
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Thông báo xóa bỏ bình luận</title>
+<style>
+body{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	margin-top:2px;
+}	
+</style>	
+</head>
+<body>
+Hi {0},<br>
+<br>
+Bình luận của bạn bị xoá vì liên quan đến điều lệ vi phạm comment.
+Bình luận tại <a href="{1}" target="_blank">bài viết</a> ngày {2} với nội dung:<br> {3}
+<br>
+<br>
+Xin vui lòng tham khảo nội qui hoạt động tại <a href="{4}"  target="_blank">đây</a> hoặc liên hệ với ban quản trị
+<br>
+
+Trân trọng,<br>
+<br>
+Ban quản trị<br>
+timkm.vn<br>
+----------------------------<br>
+Xin vui lòng đừng trả lời mail này.
+</body>
+</html>

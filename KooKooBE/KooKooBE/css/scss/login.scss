@@ -1,0 +1,63 @@
+#login-page
+{
+	min-height: 500px;  
+	
+	text-aign:center;
+	
+	form
+	{
+		padding:90px 0;
+		div.table-login
+		{			
+			margin:auto;			
+			float: right;
+			.l-remember
+			{
+				display:inline;
+				vertical-align: middle;
+				padding: 0 5px;
+			}
+			input.remember
+			{
+				margin: 0 0 3px;				
+				vertical-align: middle;
+			}
+			#btnForgot
+			{
+				margin-left:110px;
+			}
+		}
+		div.table-register
+		{
+			margin-left:50px;
+			ul.promo-info
+			{
+				li
+				{
+					font-size: 1.2em;
+					line-height:1.5em;
+					font-weight: bold;
+					i
+					{
+						margin-right:5px;
+					}
+				}
+			}
+			.action-register
+			{
+				margin-top:20px;
+				a
+				{
+					font-size: 1.5em;
+					font-weight: bold;
+					i
+					{
+						color: white;
+						
+					}
+				}
+			}
+		}
+	}
+	
+} 

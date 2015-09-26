@@ -1,0 +1,8 @@
+SUBJECT:
+{0}: Tên người phản hồi
+CONTENT:
+{0}: Tên người phản hồi
+{1}: Tên chủ bài viết
+{2}: Nội dung comment phản hồi
+{3}: Link tới bài viết
+{4}: Tiêu đề của bài viết

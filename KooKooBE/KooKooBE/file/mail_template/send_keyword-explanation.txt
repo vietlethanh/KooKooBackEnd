@@ -1,0 +1,7 @@
+SUBJECT:
+{0}: Tên người add cặp câu
+CONTENT:
+{0}: Tên người dùng
+{1}: Keyword content
+{2}: Tên người add cặp câu
+{3}: Url to search keyword

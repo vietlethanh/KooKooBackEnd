@@ -1,0 +1,6 @@
+﻿SUBJECT:
+{0}: Cho biết optimize vào lúc nào
+
+CONTENT:
+{0}: Tên người gửi
+{1}: Nội dung các table có Msg_type!=status && Msg_text!=OK khi Analyze, Optimize, Check

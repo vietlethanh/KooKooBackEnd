@@ -1,0 +1,32 @@
+Về chương trình "Mời bạn bè..." 
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>{0} gửi tin nhắn cho bạn</title>
+<style>
+body{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	margin-top:2px;
+}	
+</style>
+</head>
+<body>
+Chào bạn <b>{0}</b>,
+<br><br>
+HelloChao cảm ơn sự quan tâm của bạn với chương trình "Mời bạn bè tham gia HelloChao có thưởng". 
+<br><br>
+HelloChao lưu ý bạn nên đọc kỹ thể lệ của chương trình <br>
+(có thể xem tại đây: <a href="http://hellochao.com/help.php?txtTut=6">http://hellochao.com/help.php?txtTut=6</a>). <br>
+Đặc biệt là các điều khoản của chương trình, trong đó điều khoản thứ 5 
+<font style="color:red;">"Mọi sự gian lận trong quá trình tham gia chương trình sẽ không được chấp nhận (bao gồm các hành vi tự tạo nhiều email để đăng ký thành viên, dùng các công cụ tự động tạo email giả, tạo tài khoản tự động,...). HelloChao có quyền từ chối trao giải bất kỳ thành viên nào có hành vi gian lận mà không cần sự giải thích hay thông báo."</font> là điều khoản các thành viên thường hay vi phạm nhất trong những ngày qua. 
+<br><br>
+Chúc bạn giới thiệu được nhiều bạn bè và may mắn!
+<br><br><br>
+Ban Quản Trị<br>
+<a href="http://www.hellochao.com/">www.hellochao.com</a>
+<br>
+----------------------------<br>
+Xin vui lòng đừng trả lời mail này.
+</body>
+</html>

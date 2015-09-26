@@ -1,0 +1,39 @@
+#footer
+{
+	position:relative;
+	clear:both; 
+	height:70px;
+	text-align:center;
+	margin-top:10px;
+	img.border
+	{
+		height:5px;
+		border: none;
+	}
+	ul
+	{
+		margin-top:20px;
+		li
+		{
+			display: inline;
+			border-right: 2px solid $color_body;
+			padding: 0 17px;
+			a, a:visited
+			{ 
+				color:$color_body; text-decoration:none;cursor: pointer
+			}  
+			a:hover
+			{
+				color:$color_hover;
+			}			
+		}
+		li:last-child
+		{
+			border-right: none;
+		}
+	}
+	.copyright
+	{
+		clear: both;
+	}
+}

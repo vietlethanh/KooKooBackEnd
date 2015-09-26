@@ -1,0 +1,95 @@
+#header
+{
+	height:45px;
+	margin-top:0px;
+	border-bottom: 1px solid #fff;
+	margin-bottom: 18px;
+	padding-bottom: 4px;
+	#header-menu
+	{
+		line-height: 14px;
+		>ul
+		{
+			li
+			{
+				/*background: none repeat scroll 0 0 rgba(255, 255, 255, 0.6);
+				border-right: 2px solid $color_body;
+				color: $color_header;
+				float: left;
+				font-size: 1em; 
+				font-weight: bolder; 
+				height: 24px;
+				padding: 10px 9px; 
+				text-align: center;*/
+				
+				border-right: 1px dotted $color_body;
+				color: white;
+				float: left;
+				font-size: 1em;
+				font-weight: bolder;
+				height: 24px;
+				padding: 10px 9px;
+				text-align: center;
+				line-height:17px;
+				width:76px;
+				a
+				{
+					color: $color_body;
+				}
+				a:hover
+				{
+					color:$color_hover;
+				}
+				img.m-logo
+				{
+					height:40px;
+					margin-top: -5px;
+				}
+			}
+			li:first-child
+			{
+				
+			}
+			li:last-child
+			{
+				border-right: none;
+			}
+		}		
+	}
+	#div-login
+	{
+		label
+		{
+			display: inline;
+		}
+		.dropdown.user
+		{
+			.avatar
+			{
+				width: 35px;
+				height: 35px;
+			}
+		}
+	}
+}
+
+#admin-header
+{
+	border-bottom: 1px solid #FFFFFF;
+    font-size: 19px;
+    height: 45px;
+    margin-bottom: 18px;
+    padding-bottom: 4px;
+    padding-top: 27px;
+    vertical-align: bottom;
+	text-align: left;
+	a.menu
+	{
+		border-right: 2px solid #0000FF;
+		padding-right: 5px;
+	}
+	a.menu:last-child
+	{
+		border-right:none;
+	}
+}

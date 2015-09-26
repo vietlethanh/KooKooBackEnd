@@ -1,0 +1,32 @@
+#login-page {
+  min-height: 500px;
+  text-aign: center; }
+  #login-page form {
+    padding: 90px 0; }
+    #login-page form div.table-login {
+      margin: auto;
+      float: right; }
+      #login-page form div.table-login .l-remember {
+        display: inline;
+        vertical-align: middle;
+        padding: 0 5px; }
+      #login-page form div.table-login input.remember {
+        margin: 0 0 3px;
+        vertical-align: middle; }
+      #login-page form div.table-login #btnForgot {
+        margin-left: 110px; }
+    #login-page form div.table-register {
+      margin-left: 50px; }
+      #login-page form div.table-register ul.promo-info li {
+        font-size: 1.2em;
+        line-height: 1.5em;
+        font-weight: bold; }
+        #login-page form div.table-register ul.promo-info li i {
+          margin-right: 5px; }
+      #login-page form div.table-register .action-register {
+        margin-top: 20px; }
+        #login-page form div.table-register .action-register a {
+          font-size: 1.5em;
+          font-weight: bold; }
+          #login-page form div.table-register .action-register a i {
+            color: white; }

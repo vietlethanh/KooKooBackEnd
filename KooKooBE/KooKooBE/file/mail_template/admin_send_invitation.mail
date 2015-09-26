@@ -1,0 +1,35 @@
+Mời bạn bè tham gia HelloChao có thưởng
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Mời bạn bè tham gia HelloChao có thưởng.</title>
+<style>
+body{
+font-family: Arial, Helvetica, sans-serif;
+font-size:12px;
+margin-top:2px;
+}
+</style>
+</head>
+<body>
+Chào bạn <b>{0}</b>!<br>
+<br>
+HelloChao rất trân trọng tình cảm của bạn dành cho HelloChao trong thời gian qua, và nhằm cảm ơn cũng như khuyến khích các thành viên, HelloChao đã mở chương trình “Mời bạn bè tham gia HelloChao có thưởng”. Tham gia chương trình, thành viên nào mời bạn bè đăng ký và kích hoạt tài khoản nhiều nhất sẽ nhận được phần thưởng có giá trị.
+<br><br>
+Mời bạn <b>{0}</b> click vô link này để xem chi tiết thể lệ chương trình:<br> 
+<a href="http://hellochao.com/help.php?txtTut=6">http://hellochao.com/help.php?txtTut=6</a> 
+<br><br>
+Chúc bạn <b>{0}</b> gặp nhiều may mắn!
+<br><br>
+Ban Quản Trị<br>
+<a href="http://www.hellochao.com/">www.hellochao.com</a>
+<br><br>
+Xin vui lòng đừng trả lời mail này.<br>
+---------------------------------------<br>
+<br><i>
+Hellochao.com là công cụ tìm kiếm câu đàm thoại Anh Việt, có giao diện giống như Google và cách tìm kiếm cũng giống như Google. Khi bạn gõ vào một cụm từ thể hiện cho ý của bạn để tìm kiếm, HelloChao sẽ tìm cho bạn những cặp câu song ngữ Anh Việt có chứa cụm từ bạn cần tìm.
+</i><br><br><i>
+Hellochao.com là nơi tập trung hàng triệu câu tiếng Anh hoàn chỉnh để bạn có thể sử dụng ngay trong mọi tình huống, là một người thầy luôn luôn bên bạn để giải đáp cho bạn mỗi khi bạn không biết nói câu nào đó bằng tiếng Anh, là nơi hiệu quả nhất để bạn có thể cải thiện và hoàn thiện tiếng Anh của mình,…
+</i><br>
+</body>
+</html>

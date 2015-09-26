@@ -1,0 +1,8 @@
+SUBJECT:
+{0} : Tên người phản hồi
+{1} : Tên chủ comment
+CONTENT:
+{0}: Tên người phản hồi
+{1}: Tên người nhận mail
+{2}: Nội dung comment phản hồi //trích lược nội dung comment chính
+{3}: Link tới comment

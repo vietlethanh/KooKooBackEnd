@@ -1,0 +1,42 @@
+﻿{0}
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>{0} gửi tin nhắn cho bạn</title>
+<style>
+body{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	margin-top:2px;
+}	
+</style>
+</head>
+<body>
+Chào Bạn,<br>
+<br>
+<b>{0}</b> gửi cho bạn danh sách các địa chỉ <b>IP</b> đã <b>Request</b> tới giới hạn <b>không cho phép</b> : <b>{1}</b> lần <b>{2}</b>:<br><br>
+<center>
+<table width="70%" border="0" cellpadding="0" cellspacing="1" bgcolor="#9FCE9F">
+	<tr bgcolor="#EFFAEF">
+		<td>
+			<table width="100%" border="0" cellspacing="5px" cellpadding="0">
+				<tr bgcolor="#EFFAEF">
+		            <td width="5px">&nbsp;</td>					
+		            <td>{3}</td>
+    			</tr>
+			</table>
+	  </td>    	        
+	</tr>
+</table>
+</center>
+<br>
+<b> Bạn hãy xem lại các địa chỉ IP trên đi.</b><br><br>
+<br>
+Trân trọng,<br>
+<br>
+Ban quản trị<br>
+www.hellochao.com<br>
+----------------------------<br>
+Xin vui lòng đừng trả lời mail này.
+</body>
+</html>

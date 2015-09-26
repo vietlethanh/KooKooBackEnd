@@ -1,0 +1,8 @@
+﻿SUBJECT:
+{0}: Nội dung thể hiện thông tin ngắn gọn của vòng quét
+
+CONTENT:
+{0}: Tên người gửi
+{1}: Giới hạn yêu cầu
+{2}: Thời gian kiểm tra định kỳ
+{3}: Nội dung tin nhắn

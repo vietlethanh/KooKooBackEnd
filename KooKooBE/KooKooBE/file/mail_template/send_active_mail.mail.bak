@@ -1,0 +1,32 @@
+Kích hoạt tài khoản HelloChao
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Vay Tín Chấp-Xác nhận thông tin đăng ký</title>
+<style>
+body{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	margin-top:2px;
+}	
+</style>
+</head>
+<body>
+Hi {0},<br>
+<br>
+Cám ơn <b>{0}</b> đã đăng ký nhận tám bước hoạch định chính sách tại <a href="vaytinchap.vn">vaytinchap.vn</a>.<br>
+<br>
+Để xác nhận những thông tin mà Quý Khách đã đăng ký xin vui lòng click vào link sau:<br>
+<br> 
+<a href="{1}">{1}</a><br>
+<br>
+Nếu không thể mở link bạn vui lòng copy link này paste vào thanh địa chỉ của trình duyệt và ấn phím ENTER.<br>
+<br>
+Trân trọng,<br>
+<br>
+Ban quản trị<br>
+www.hellochao.com<br>
+----------------------------<br>
+Xin vui lòng đừng trả lời mail này.
+</body>
+</html>

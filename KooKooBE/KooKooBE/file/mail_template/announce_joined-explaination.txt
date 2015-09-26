@@ -1,0 +1,9 @@
+﻿SUBJECT:
+{0}: Tên người vừa tham gia HelloChao
+
+CONTENT:
+{0}: Tên người gửi thư mời
+{1}: Tên người vừa tham gia HelloChao
+{2}: Địa chỉ email người vừa tham gia HelloChao
+{3}: Link để xem profile của {1}
+{4}: Link để login vào {0} và gửi mail cho {1}

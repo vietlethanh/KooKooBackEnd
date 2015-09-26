@@ -1,0 +1,28 @@
+Ban quản trị đã thay đổi thông tin tài khoản của {0} ở Hellochao.com
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Ban quản trị đã thay đổi thông tin tài khoản của {0} ở Hellochao.com</title>
+<style>
+body{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	margin-top:2px;
+}	
+</style>
+</head>
+<body>
+Hi {0},<br><br>
+Ban quản trị đã thay đổi thông tin tài khoản của Bạn tại Hellochao.com<br>
+Những thông tin đã thay đổi là:<br>
+<br>
+{1}
+<br><br><br>
+Trân trọng,<br>
+<br>
+Ban quản trị<br>
+www.hellochao.com<br>
+----------------------------<br>
+Xin vui lòng đừng trả lời mail này.
+</body>
+</html>

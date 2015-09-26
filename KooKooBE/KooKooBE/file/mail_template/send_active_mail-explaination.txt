@@ -1,0 +1,5 @@
+SUBJECT:
+
+CONTENT:
+{0}: Tên người dùng
+{1}: Link kích hoạt

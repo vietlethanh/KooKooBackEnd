@@ -1,0 +1,9 @@
+﻿SUBJECT:
+{0}: Tên người gửi
+
+CONTENT:
+{0}: Tên người gửi
+{1}: Tên người nhận
+{2}: Subject của tin nhắn
+{3}: Nội dung tin nhắn
+{4}: Link để xem chi tiết

@@ -1,0 +1,6 @@
+SUBJECT:
+
+CONTENT:
+{0}: Tên người dùng
+{1}: Email
+{2}: Password

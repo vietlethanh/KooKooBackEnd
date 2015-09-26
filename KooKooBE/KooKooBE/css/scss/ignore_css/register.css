@@ -1,0 +1,22 @@
+#register-page {
+  min-height: 500px;
+  text-aign: center; }
+  #register-page form {
+    padding: 0px 0; }
+    #register-page form div.table-register {
+      margin: auto;
+      padding: 15px;
+      width: 70%;
+      margin: auto; }
+      #register-page form div.table-register .control-group .controls .radio {
+        width: 50px;
+        display: inline-block; }
+        #register-page form div.table-register .control-group .controls .radio input[type="radio"] {
+          display: inline;
+          float: none;
+          vertical-align: top;
+          margin-left: 0px; }
+      #register-page form div.table-register .control-group .controls .input-icon .icon-envelope {
+        margin-top: 6px; }
+      #register-page form div.table-register .control-group .controls .input-icon #txtEmail {
+        width: 204px; }

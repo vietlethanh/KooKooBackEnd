@@ -1,0 +1,47 @@
+{0} phản hồi comment của bạn
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>{0} phản hồi comment của bạn</title>
+<style>
+body{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	margin-top:2px;
+}	
+</style>
+</head>
+<body>
+Hi {1},<br>
+<br>
+<b>{0}</b> đã phản hồi comment của bạn:<br>
+<br>
+<center>
+<table width="70%" border="0" cellpadding="0" cellspacing="1" bgcolor="#9FCE9F">
+	<tr bgcolor="#EFFAEF">
+		<td>
+			<table border="0" cellspacing="5px" cellpadding="0">
+				<tr bgcolor="#EFFAEF">
+					<td width="5px">&nbsp;</td>					
+					<td>{2}</td>
+				</tr>
+			</table>
+	  </td>    	        
+	</tr>
+</table>
+</center>
+<br>
+Để xem đầy đủ comment, bạn click vào link sau: <br>
+<br>
+<a href="{3}">{3}</a><br>
+<br>
+Nếu không thể mở link bạn vui lòng copy link này paste vào thanh địa chỉ của trình duyệt và ấn phím ENTER.<br>
+<br>
+Trân trọng,<br>
+<br>
+Ban quản trị<br>
+www.hellochao.com<br>
+----------------------------<br>
+Xin vui lòng đừng trả lời mail này.
+</body>
+</html>

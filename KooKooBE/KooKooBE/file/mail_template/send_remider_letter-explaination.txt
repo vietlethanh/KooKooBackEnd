@@ -1,0 +1,5 @@
+SUBJECT:
+{0}: Tên người nhận
+
+CONTENT:
+{0}: Tên người nhận
