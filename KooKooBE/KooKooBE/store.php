@@ -37,7 +37,7 @@ if($_pgR["act"]==1) //search
 {
     //echo $_gmapAPI;
  
-    $address = $_pgR["keyword"];
+    $address = $_pgR["keyword"]; 
     //echo $address;
     $distance= $_pgR["distance"];
     //echo $address;
