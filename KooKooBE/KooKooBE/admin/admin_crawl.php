@@ -65,7 +65,7 @@ if($_pgR['act'] == 9999)
      //$response= $fb->get("/7724542745_10153166070272746?fields=description,attachments");
      $response= $fb->get("/7724542745?fields=id,name,posts");
      $posts= $response->getGraphObject() ->asArray() ;
-    //var_dump($posts);
+    var_dump($posts);
      //echo $posts;
     // echo $posts['headers:protected'];
       //print_r($posts);   

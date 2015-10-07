@@ -39,7 +39,10 @@ $_facebookToken = 'CAABqohONX6ABAH4MZBw0BF2jwoZCNBEgMJwmbmn5IK95Onzyrxh6MivjWla4
 $_facebookAppID = '117244345278368';	
 $_facebookSecrect='86eb5f2337c848fffdf44b150332489e';
 $_facebookVersion='v2.4';
-$_gmapAPI ='AIzaSyCuSDGriOk4x6VE_srUXdgwuObC91vTUBE';
+//$_gmapAPI ='AIzaSyCuSDGriOk4x6VE_srUXdgwuObC91vTUBE'; //KooKoo
+//$_gmapAPI ='AIzaSyBqbaypCGExFm6DtcGUJlZrfvhXu5WN83Y'; //KooKoo2
+//$_gmapAPI ='AIzaSyDINWsuul_wqkeIqWy8U_TNN873kz_1vLM'; //KooKoo3 
+$_gmapAPI ='AIzaSyD7AYbVQpysapo523FFVwSqm62K7hmEbcY'; //KooKoo4
 $_distance = 5; //5km
 // Khoi tao gia tri cho global variables
 $_pgR = global_common::getRequest();

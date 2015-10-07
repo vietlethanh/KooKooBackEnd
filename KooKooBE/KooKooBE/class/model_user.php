@@ -136,6 +136,7 @@ class Model_User
 		$userID = $userInfo[global_mapping::UserID];
 		$sysPassword = $userInfo[global_mapping::Password];
 		$userpassword = md5($userID.md5($password));
+        //echo $userpassword;
 		if($userpassword == $sysPassword){
 			if(!$userInfo[global_mapping::Avatar])
 			{

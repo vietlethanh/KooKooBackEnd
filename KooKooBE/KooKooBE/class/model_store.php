@@ -309,7 +309,7 @@ class Model_Store
 		}
         else
         {
-            $whereClause = ' WHERE ('.global_mapping::IsDeleted.' IS NULL or '.global_mapping::IsDeleted.' = \'0\')';
+            //$whereClause = ' WHERE ('.global_mapping::IsDeleted.' IS NULL or '.global_mapping::IsDeleted.' = \'0\')';
         }
 		
 		if($orderBy)
