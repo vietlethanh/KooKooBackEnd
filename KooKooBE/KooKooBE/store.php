@@ -50,6 +50,7 @@ if($_pgR["act"]==1) //search
         {
             $distance = $_distance;
         }
+        //echo $address;
         $location = global_common::getLocation($_gmapAPI,$address);
     }
     else
@@ -74,14 +75,17 @@ if($_pgR["act"]==1) //search
     //echo $distance.'<br>';
     foreach($allStores as $item)
     {
-       echo date('Y-m-d H:i:s').'<br>';
+        //echo date('Y-m-d H:i:s').'<br>';
         //removing
-         //  $count++;
-         //   if($count>=10)
-         //       break;
+        //   $count++;
+        //   if($count>=1000)
+        //     break;
         //End removing        
-                
-        $storeDistance = global_common::getDistance($location['lat'],$location['long'],$item[global_mapping::Latitude],$item[global_mapping::Longitude]);
+        //echo $location['lat'].$location['long'].$item[global_mapping::Latitude].$item[global_mapping::Longitude].'<br>';        
+        //$storeDistance = global_common::getDistance($location['lat'],$location['long'],$item[global_mapping::Latitude],$item[global_mapping::Longitude]);
+        $rad = M_PI / 180;
+        $storeDistance = acos(sin($item[global_mapping::Latitude]*$rad) * sin($location['lat']*$rad) + cos($item[global_mapping::Latitude]*$rad) * cos($location['lat']*$rad) * cos($item[global_mapping::Longitude]*$rad - $location['long']*$rad)) * 6371;// Kilometers
+        
         //$storeDistance = 1000;
         if($storeDistance< $distance)
         {
@@ -96,7 +100,7 @@ if($_pgR["act"]==1) //search
                 break;
         }
     }
-   //return;
+    //return;
         
     usort($result, "global_common::cmpDistance");
     $result = array_slice($result,0, 10);

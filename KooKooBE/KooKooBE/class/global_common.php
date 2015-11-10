@@ -4163,21 +4163,28 @@ class global_common
     /*::                                                                         :*/
     /*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
     function getDistance($lat1, $lon1, $lat2, $lon2, $unit='K') {
-    
-      $theta = $lon1 - $lon2;
-      $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
-      $dist = acos($dist);
-      $dist = rad2deg($dist);
-      $miles = $dist * 60 * 1.1515;
-      $unit = strtoupper($unit);
-    
-      if ($unit == "K") {
+        echo date('Y-m-d H:i:s').'<br>';
+        return 1000;
+        
+        /*
+        $rad = M_PI / 180;
+        return acos(sin($lat2*$rad) * sin($lat1*$rad) + cos($lat2*$rad) * cos($lat1*$rad) * cos($lon2*$rad - $lon1*$rad)) * 6371;// Kilometers
+        
+        $theta = $lon1 - $lon2;
+        $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+        $dist = acos($dist);
+        $dist = rad2deg($dist);
+        $miles = $dist * 60 * 1.1515;
+        $unit = strtoupper($unit);
+        
+        if ($unit == "K") {
         return ($miles * 1.609344);
-      } else if ($unit == "N") {
+        } else if ($unit == "N") {
           return ($miles * 0.8684);
         } else {
             return $miles;
           }
+          */
     }
     
     function cmpDistance($a, $b)
