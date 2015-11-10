@@ -17,7 +17,7 @@ if ($_pgR["act"] == Model_User::ACT_LOGIN)
 	
 	$result = $objUser->login($userName,$password);
 	
-	if ($result)
+	if ($result) 
 	{
 		$_SESSION[global_common::SES_C_USERINFO] = $result;
 		$curPage = $_SESSION[global_common::SES_C_CUR_PAGE];

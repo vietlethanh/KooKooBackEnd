@@ -111,6 +111,19 @@ if ($_pgR["act"] == model_Article::ACT_APPROVE )
 	
 	if (global_common::isCLogin())
 	{
+	   	$postID = $_pgR[global_mapping::fbpostid];
+        $pageID = $_pgR[global_mapping::fbid];
+        $existedArticle = $objArticle->getArticleByRefID($postID);
+	   	if ($existedArticle)
+		{
+			$arrHeader = global_common::getMessageHeaderArr($banCode);//$banCode
+			echo global_common::convertToXML(
+					$arrHeader, array("rs", "inf"), 
+					array(1, 'Article was added before'), 
+					array( 0, 1 )
+					);
+			return;
+		}
         $accessToken= $_facebookToken;
         $fb = new Facebook\Facebook([
         'app_id' => $_facebookAppID,
@@ -118,8 +131,7 @@ if ($_pgR["act"] == model_Article::ACT_APPROVE )
         'default_graph_version' => $_facebookVersion,
         'default_access_token'=>$accessToken
         ]);
-       	$postID = $_pgR[global_mapping::fbid];
-        $pageID = $_pgR[global_mapping::fbid];
+       
         //echo $postID;
         //print_r($res);;
         //echo '<br>Data<br>';
@@ -141,12 +153,13 @@ if ($_pgR["act"] == model_Article::ACT_APPROVE )
 		//}
 		//print_r($_pgR);
         $content = $posts[global_mapping::fbmessage];
-        print_r($posts[global_mapping::fbattachments]);
+        $content = str_replace(array("\r\n", "\r", "\n"), '<br>', $content);
+        //print_r($posts[global_mapping::fbattachments]);
         foreach($posts[global_mapping::fbattachments] as $item)
         {
             $content.= '<img src="'.$item[global_mapping::fbmedia][global_mapping::fbimage][global_mapping::fbsrc].'"/>';
         }
-        $storeInfo = $objStore->getStoreByRefID($pageID);
+      
 		$title =$posts[global_mapping::fbdescription];
 		$title = html_entity_decode($title,ENT_COMPAT ,'UTF-8' );
 		//$content = $posts[global_mapping::fbmessage];
@@ -173,12 +186,15 @@ if ($_pgR["act"] == model_Article::ACT_APPROVE )
 		$cities = html_entity_decode($_pgR[global_mapping::Cities],ENT_COMPAT ,'UTF-8' );
 		$fileName = html_entity_decode($_pgR[global_mapping::FileName],ENT_COMPAT ,'UTF-8' );
 		$status = 1;
-	
+        
 		$createdBy = $c_userInfo[global_mapping::UserID];
-		
-		$resultID = $objArticle->insert($title,$fileName, $content,null,$tags,$catalogueID,$createdBy,$renewedNum,$companyName,
+		$arrCat = global_common::splitString($catalogueID);
+        
+        $stores = $objStore->getStoreByFBID($pageID);
+        $arrStoreID = global_common::getArrayColumn($stores,global_mapping::StoreID);
+		$resultID = $objArticle->insert($title,$fileName, $content,null,$tags,$arrCat,$createdBy,$renewedNum,$companyName,
 				$companyAddress,$companyWebsite,$companyPhone,$adType,$startDate,$endDate,$happyDays,
-				$startHappyHour,$endHappyHour, $addresses,$dictricts,$cities,$status);
+				$startHappyHour,$endHappyHour, $addresses,$dictricts,$cities,$status,$arrStoreID,$postID);
 		if ($resultID)
 		{
 			$arrHeader = global_common::getMessageHeaderArr($banCode);//$banCode

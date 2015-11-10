@@ -644,9 +644,10 @@ var article = {
 		var articleInfo = 
 		{
 			 id: articleID,
-			 isactivate: isActivate
+			 isactivate: isActivate,
+            
 		};
-		
+	
 		articleInfo.act = this.ACT_ACTIVE;
 		
         core.request.post('../'+this.Page,articleInfo,
@@ -666,11 +667,13 @@ var article = {
             }
         );
 	},
-    approveFbArticle: function(postid)
+    approveFbArticle: function(postid,pageid)
 	{
 		var articleInfo = 
 		{
-			 id: postid,			
+			 postid: postid,
+             id:pageid	,
+              CatalogueID : $('#cid').val()		
 		};
 		
 		articleInfo.act = this.ACT_APPROVE;

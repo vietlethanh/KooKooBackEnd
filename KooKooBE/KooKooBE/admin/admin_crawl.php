@@ -22,6 +22,7 @@ include_once('class/model_adtype.php');
 include_once('class/model_articletype.php');
 include_once('class/model_article.php');
 include_once('class/model_store.php');
+include_once('class/model_storecategory.php');
 require_once __DIR__.'/../lib/facebook/src/Facebook/autoload.php';
 include_once('lib/facebook/src/Facebook/Facebook.php');
 include_once('lib/facebook/src/Facebook/FacebookApp.php');
@@ -50,26 +51,6 @@ return;
 //$access_token = $session->getAccessToken();
 $session = new FacebookSession($accessToken);
 */
-if($_pgR['act'] == 9999)
-{
-	  $accessToken= $_facebookToken;
-        $fb = new Facebook\Facebook([
-        'app_id' => $_facebookAppID,
-        'app_secret' => $_facebookSecrect,
-        'default_graph_version' => $_facebookVersion,
-        'default_access_token'=>$accessToken
-        ]);
-
-    //print_r($res);;
-     //echo '<br>Data<br>';
-     //$response= $fb->get("/7724542745_10153166070272746?fields=description,attachments");
-     $response= $fb->get("/7724542745?fields=id,name,posts");
-     $posts= $response->getGraphObject() ->asArray() ;
-    var_dump($posts);
-     //echo $posts;
-    // echo $posts['headers:protected'];
-      //print_r($posts);   
-}
 
 
 $catID = $_pgR["cid"];
@@ -81,13 +62,7 @@ if($catID)
 	$condition .= global_mapping::ArticleTypeID .'='.$catID.'';
 }
 
-if($adTypeID)
-{
-	if($condition)
-		$condition .= ' and '.global_mapping::AdTypeID .'='.$adTypeID;
-	else
-		$condition .= global_mapping::AdTypeID .'='.$adTypeID;
-}
+
 if($deleted)
 {
 	$condition .= ' And '.global_mapping::IsDeleted.'=1';
@@ -96,10 +71,54 @@ else
 {
 	$condition .= ' And ('.global_mapping::IsDeleted.'=0 or '.global_mapping::IsDeleted.' is null)';
 }
-$allAds = $objAdvertising->getAllAdvertising(0,null,$condition,null);
+$allStores = $objStore->getStoresByCatID($catID,'`Name`,FacebookID');
+//print_r($allStores);
+//return;
+//$allAds = $objAdvertising->getAllAdvertising(0,null,$condition,null);
 
 $allAdType = $objAdType->getAllAdType(0,null,null,null);
 $allCats = $objArticleType->getAllArticleType(0,null,'ParentID=0',null);
+
+
+if($_pgR['act'] == 9999)
+{
+    //echo 'act 9999';
+    $accessToken= $_facebookToken;
+    $fb = new Facebook\Facebook([
+    'app_id' => $_facebookAppID,
+    'app_secret' => $_facebookSecrect,
+    'default_graph_version' => $_facebookVersion,
+    'default_access_token'=>$accessToken
+    ]);
+    $posts = array();
+    //print_r($allStores);
+    echo 'count($allStores) <br>';
+    echo count($allStores);
+    echo '<br>';
+    $gotPosts = array();
+    foreach ($allStores as $item)
+    {
+        //print_r($item);
+        
+        if(array_key_exists($item[global_mapping::FacebookID],$gotPosts) == false &&  $item[global_mapping::FacebookID])
+        {
+            $gotPosts[$item[global_mapping::FacebookID]] =$item[global_mapping::FacebookID];
+            //print_r($res);;
+            //echo '<br>Data<br>';
+            //$response= $fb->get("/7724542745_10153166070272746?fields=description,attachments");
+            //echo 'FacebookID:'.$item[global_mapping::FacebookID];
+            $response= $fb->get('/'.$item[global_mapping::FacebookID].'?fields=id,name,posts');
+            $newPosts = $response->getGraphObject() ->asArray() ;
+            array_push ($posts,$newPosts);
+            // var_dump($posts);
+            //echo $posts;
+            // echo $posts['headers:protected'];
+            //print_r($posts);  
+        }
+    }   
+     // print_r($posts);  
+}
+
 ?>
 <?php
 $_SESSION[global_common::SES_C_CUR_PAGE] = "admin/admin_advertising.php";
@@ -157,7 +176,7 @@ foreach($allCats as $item)
 }
 ?>		
 </select>	
-<select class="" name="tid" id="cid" style="height:25px">
+<select class="" name="tid" id="cid" style="height:25px;display:none">
 	<option value="0" >ALL</option>
 <?php
 foreach($allAdType as $item)
@@ -177,6 +196,7 @@ foreach($allAdType as $item)
 ?>	
 </select>	
 <label for="deleted" style="height:20px;color:black; margin: 0 0 0 10px">Deleted: </label> <input type="checkbox" <?php echo ($deleted?'checked=checked':'') ?> name="deleted" id="deleted" value="true" />
+<input type="hidden" value="9999" id="act" name="act" />
 <input type="submit" value="Search" style="height:24px;margin:0 10px" />		
 </form>		
 									
@@ -199,25 +219,28 @@ if($posts)
 	echo 'Action';		
 	echo '</th>';
 	echo '</thead>';
-	foreach($posts[global_mapping::fbposts] as $item)
-	{
-		echo '<tr>';
-		echo '<td>';
-		echo $posts[global_mapping::fbname];		
-		echo '</td>';	
-		echo '<td style="">';
-		echo $item[global_mapping::fbmessage];		
-		echo '</td>';	
-		echo '<td>';
-       // $datefb= date_create($item[global_mapping::fbcreated_time]);
-        echo date_format($item[global_mapping::fbcreated_time],'Y/m/d H:i:s');
-	//	echo global_common::formatDateVN($item[global_mapping::fbcreated_time]);		
-		echo '</td>';	
-		echo '<td style="padding:0;width:180px">';
-		echo '<a href="javascript:article.approveFbArticle(\''.$item[global_mapping::fbid].'\',\''.$posts[global_mapping::fbid].'\')" class="btn btn-mini">Approve</a> ';	
-		echo '</td>';
-		echo '</tr>';
-	}
+   foreach($posts as $post)
+   {
+    	foreach($post[global_mapping::fbposts] as $item)
+    	{
+    		echo '<tr>';
+    		echo '<td>';
+    		echo $post[global_mapping::fbname];		
+    		echo '</td>';	
+    		echo '<td style="">';
+    		echo $item[global_mapping::fbmessage];		
+    		echo '</td>';	
+    		echo '<td>';
+           // $datefb= date_create($item[global_mapping::fbcreated_time]);
+            echo date_format($item[global_mapping::fbcreated_time],'Y/m/d H:i:s');
+    	//	echo global_common::formatDateVN($item[global_mapping::fbcreated_time]);		
+    		echo '</td>';	
+    		echo '<td style="padding:0;width:180px">';
+    		echo '<a href="javascript:article.approveFbArticle(\''.$item[global_mapping::fbid].'\',\''.$post[global_mapping::fbid].'\')" class="btn btn-mini">Approve</a> ';	
+    		echo '</td>';
+    		echo '</tr>';
+    	}
+    }
 	echo '</table>';
 }
 ?>

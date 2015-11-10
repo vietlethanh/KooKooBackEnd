@@ -100,6 +100,7 @@ class global_mapping
 	const PartnerID					= 'PartnerID';
     const Latitude					= 'Latitude';
     const Longitude					= 'Longitude';
+    const Distance					= 'Distance';
 	
 	const Mode						= 'Mode';
 	
@@ -118,6 +119,7 @@ class global_mapping
     //facebook
     const fbname					 = 'name';
     const fbid					     = 'id';
+    const fbpostid					 = 'postid';
     const fbmessage				     = 'message';
     const fbcreated_time			 = 'created_time';
     const fbposts			         = 'posts';
@@ -128,5 +130,7 @@ class global_mapping
     const fbimage		             = 'image';
     const fburl		                 = 'url';
     const fbsrc		                 = 'src';    
+    
+    const FacebookID                = 'FacebookID';
 }
 ?>

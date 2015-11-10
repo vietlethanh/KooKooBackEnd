@@ -3657,7 +3657,7 @@ class global_common
 	 * This is method array_column to one column
 	 *
 	 * @param mixed $array This is a description
-	 * @param mixed $column This is a description
+	 * @param mixed $column Column name
 	 * @return mixed This is the return value description
 	 *
 	 */
@@ -4067,7 +4067,7 @@ class global_common
         curl_setopt($ch, CURLOPT_HTTPHEADER,$header);
         if($headerCookie)
         {
-          curl_setopt($ch, CURLOPT_COOKIE, "f_idientifier=bf72441f-84e8-4f12-9c76-0271d2e4d83b;flg=vn;fbm_395614663835338=base_domain=.foody.vn; fbCookie=0%2C217; f_idientifier=44e62fe2-fd42-4dcb-a8dd-4d71bc8b0329;  ASP.NET_SessionId=awqah4snfbqj5hj24tphb33c; __RequestVerificationToken=XMd5Qfkqw7qEhVHRxCTUPzSyMg42O-H3hYbfTYrPBJvrO2iC-1oi3I_oDh_JhgfRjY-tVMqIO9-fKbIvIFuWyLRXRNfUhQ8U1DKCLb9oYVY1; _gat=1; _ga=GA1.2.649618138.1434284279; gcat=www; FOODY.RequestVerificationToken=ad50533b-967a-4826-b8f6-916e17eb55b7; floc=217;FOODY.AUTH=F471F391D1F7C977BD5C55B82492F9EB2B218FAAFFB1DA0C859A6EA53AF4166BE161FAA72B3D199B9A828C802160708414541B5064FCBACEF253038ABE6831728970A876601790EF6592E6E40267EFA6312BD83F70CA119D5FD05AF4A09CC4F2B278BD5563936C8863FC11F19C882F2A1F1D5E725FF3B5A1727983F2F6011B4B82607C626E8DF10C08D4CC9AEA9CD44C218A6C4A699AA74E262186D35567A05C6F3FAAC40AD19E1527CC554E10C1B56AD827BE0D329A15A1AA65A3F9A73BB1E9D472185298F0800D390FA626EBDAD6FCFCDF01A8693C3132D854C49D988505EB;");  
+          curl_setopt($ch, CURLOPT_COOKIE,$headerCookie);// "f_idientifier=bf72441f-84e8-4f12-9c76-0271d2e4d83b;flg=vn;fbm_395614663835338=base_domain=.foody.vn; fbCookie=0%2C217; f_idientifier=44e62fe2-fd42-4dcb-a8dd-4d71bc8b0329;  ASP.NET_SessionId=awqah4snfbqj5hj24tphb33c; __RequestVerificationToken=XMd5Qfkqw7qEhVHRxCTUPzSyMg42O-H3hYbfTYrPBJvrO2iC-1oi3I_oDh_JhgfRjY-tVMqIO9-fKbIvIFuWyLRXRNfUhQ8U1DKCLb9oYVY1; _gat=1; _ga=GA1.2.649618138.1434284279; gcat=www; FOODY.RequestVerificationToken=ad50533b-967a-4826-b8f6-916e17eb55b7; floc=217;FOODY.AUTH=F471F391D1F7C977BD5C55B82492F9EB2B218FAAFFB1DA0C859A6EA53AF4166BE161FAA72B3D199B9A828C802160708414541B5064FCBACEF253038ABE6831728970A876601790EF6592E6E40267EFA6312BD83F70CA119D5FD05AF4A09CC4F2B278BD5563936C8863FC11F19C882F2A1F1D5E725FF3B5A1727983F2F6011B4B82607C626E8DF10C08D4CC9AEA9CD44C218A6C4A699AA74E262186D35567A05C6F3FAAC40AD19E1527CC554E10C1B56AD827BE0D329A15A1AA65A3F9A73BB1E9D472185298F0800D390FA626EBDAD6FCFCDF01A8693C3132D854C49D988505EB;");  
         }        
         $response = curl_exec($ch);
         curl_close($ch);
@@ -4122,9 +4122,11 @@ class global_common
     {
        
         $requestUrl = 'https://maps.google.com/maps/api/geocode/json?key='.$apiKey.'&address='.urlencode($address).'&sensor=false';
+        //echo $requestUrl;
         $json = file_get_contents($requestUrl);
-        //dump($json);
-        // echo $json;
+        //echo '$requestUrl: ';
+        
+        //echo $json;
         $json = json_decode($json);
         //print_r($json) ;
         $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
@@ -4176,6 +4178,14 @@ class global_common
         } else {
             return $miles;
           }
+    }
+    
+    function cmpDistance($a, $b)
+    {
+        if ($a[global_mapping::Distance] == $b[global_mapping::Distance]) {
+            return 0;
+        }
+        return ($a[global_mapping::Distance] < $b[global_mapping::Distance]) ? -1 : 1;
     }
 	#end region
 	

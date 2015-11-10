@@ -67,14 +67,15 @@ class Model_Article
 		EndHappyHour,
 		Addresses,
 		Dictricts,
-		Cities
+		Cities,
+ 	    RefID
 		)
 		VALUES (
 		\'{1}\', \'{2}\', \'{3}\', \'{4}\', \'{5}\', \'{6}\', \'{7}\', \'{8}\', \'{9}\', \'{10}\', \'{11}\', \'{12}\', 
 		\'{13}\', \'{14}\', \'{15}\', \'{16}\', \'{17}\', \'{18}\', \'{19}\', \'{20}\', \'{21}\', \'{22}\', \'{23}\',
-		\'{24}\', \'{25}\', {26}, {27}, \'{28}\', {29}, {30}, \'{31}\', \'{32}\', \'{33}\');';
+		\'{24}\', \'{25}\', {26}, {27}, \'{28}\', {29}, {30}, \'{31}\', \'{32}\', \'{33}\', \'{34}\');';
 	
-	const SQL_INSERT_SL_ARTICLE_TYPE_ID		= 'INSERT INTO `{0}` (ArticleTypeID,ArticleID) VALUES {1};';    
+	const SQL_INSERT_SL_ARTICLE_TYPE_ID		= 'INSERT INTO `{0}` (ArticleTypeID,ArticleID,StoreID) VALUES {1};';    
 	
 	const SQL_UPDATE_SL_ARTICLE		= 'UPDATE `{0}`
 		SET  
@@ -189,7 +190,7 @@ class Model_Article
 	public function insert($title,$filename,$content,$notificationtype,$tags,$articletype,
 		$createdby,$renewednum,$companyname,$companyAddress,$companyWebsite,$companyPhone,
 		$adType,$startDate,$endDate,$happyDays,$startHappyHour,$endHappyHour,$addresses,
-		$dictricts,$cities,$status)
+		$dictricts,$cities,$status,$arrStoreID,$refID)
 	{
 		//echo $endDate?'\''.global_common::formatDateTimeSQL($endDate).'\'':'null';
 		$status = 1;
@@ -215,7 +216,7 @@ class Model_Article
 					global_common::escape_mysql_string($happyDays),
 					$startHappyHour?'\''.$startHappyHour.'\'':'null',$endHappyHour?'\''.$endHappyHour.'\'':'null',
 					global_common::escape_mysql_string($addresses),
-					global_common::escape_mysql_string($dictricts),	global_common::escape_mysql_string($cities)
+					global_common::escape_mysql_string($dictricts),	global_common::escape_mysql_string($cities),$refID
 					));
 		//global_common::writeLog('Error add sl_article:'.$strSQL,1);
 		if (!global_common::ExecutequeryWithCheckExistedTable($strSQL,self::SQL_CREATE_TABLE_SL_ARTICLE,$this->_objConnection,$strTableName))
@@ -228,15 +229,19 @@ class Model_Article
 		
 		$articleID = global_common::getMaxValueofField($this->_objConnection, global_mapping::ArticleID,self::TBL_SL_ARTICLE);
 		$strSQLValueType = '';
-		
-		foreach($articletype as $item){
-			$strSQLValueType .= '(\''.$item.'\', \''.$articleID.'\'),';
-			
-		}
+		//print_r($articletype);
+        foreach ($arrStoreID as $storeID)
+        {
+    		foreach($articletype as $item){
+    			$strSQLValueType .= '(\''.$item.'\', \''.$articleID.'\',\''.$storeID.'\'),';
+    			
+    		}
+        }
 		$strSQLValueType = global_common::cutLast($strSQLValueType);
 		
 		$strSQL = global_common::prepareQuery(self::SQL_INSERT_SL_ARTICLE_TYPE_ID,
 				array(self::TBL_SL_ARTICLE_TYPE_ID,$strSQLValueType));
+        //echo $strSQL;
 		if (!global_common::ExecuteMultiqueryWithCheckExistedTable($strSQL,self::SQL_CREATE_TABLE_SL_ARTICLE_TYPE_ID,$this->_objConnection,self::TBL_SL_ARTICLE_TYPE_ID));
 		{
 			global_common::writeLog('Error add sl_article_type_id:'.$strSQL,1);
@@ -398,6 +403,28 @@ class Model_Article
 			return null;
 		}
 		$arrResult[0][global_mapping::Content] = stripslashes($arrResult[0][global_mapping::Content]);
+		//print_r($arrResult);
+		return $arrResult[0];
+	}
+    
+    public function getArticleByRefID($objID) 
+	{		
+		$selectField ='*';
+		
+	
+	    $condition = 'WHERE '.global_mapping::RefID.' = \''.$objID.'\' ';	
+	
+		
+		$strSQL = global_common::prepareQuery(global_common::SQL_SELECT_FREE, 
+				array($selectField, self::TBL_SL_ARTICLE , $condition));
+		//return $strSQL;
+		$arrResult =$this->_objConnection->selectCommand($strSQL);		
+		if(!$arrResult)
+		{
+			global_common::writeLog('get sl_article ByID:'.$strSQL,1,$_mainFrame->pPage);
+			return null;
+		}
+		//$arrResult[0][global_mapping::Content] = stripslashes($arrResult[0][global_mapping::Content]);
 		//print_r($arrResult);
 		return $arrResult[0];
 	}

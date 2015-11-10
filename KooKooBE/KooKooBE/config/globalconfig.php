@@ -35,7 +35,7 @@ require('class/global_mail.php');
 ////require('class/user_user.php');
 
 
-$_facebookToken = 'CAABqohONX6ABAH4MZBw0BF2jwoZCNBEgMJwmbmn5IK95Onzyrxh6MivjWla4w5XhOZBbCdYRyTJzOc1xmTM7m7uAhExaOEg4wyDOegtghZCO8lV1YfDOsl2iBTvZAuyZBQfYRTNXJhnoPZAOmuW4rLXaLKxvoZBQFVDhuqcU5Uh23Qdwdr9xWkRJ';
+$_facebookToken = 'CAABqohONX6ABAO49zxsHmPYrKwBRC8r882CbqD5ZCKsmtTuZBo6xgGgHNZAuZBWXt8eRFamGnYcaBzDHEZCOC8yIvvNtFcrbbY2BoShXAAnubBDyFVovgwRDWVyuOLFfx20hL9jaJAG4GFsx0UG01oXZAp2cZBM5LFHfQRNQpPgRAyusrBcnR9s';
 $_facebookAppID = '117244345278368';	
 $_facebookSecrect='86eb5f2337c848fffdf44b150332489e';
 $_facebookVersion='v2.4';

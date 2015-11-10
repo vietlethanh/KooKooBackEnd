@@ -276,6 +276,15 @@ class Model_Store
 			global_common::writeLog('get sl_store ByID:'.$strSQL,1,$_mainFrame->pPage);
 			return null;
 		}
+        
+        $objCity = new Model_City($this->_objConnection);
+        $objDistrict = new Model_District($this->_objConnection);
+        $district = $objDistrict->getDistrictByID($arrResult[0][global_mapping::DistrictID]);
+        $arrResult[0][global_mapping::DistrictName]=$district[global_mapping::DistrictName];
+        
+        $city = $objCity->getCityByID($arrResult[0][global_mapping::CityID]);
+        $arrResult[0][global_mapping::CityName]= $city[global_mapping::CityName];
+        
         $objArticle = new Model_Article($this->_objConnection);
         $arrArticle = $objArticle->getArticleByStoreID($objID);
         $arrResult[0]["Articles"] = $arrArticle;
@@ -284,7 +293,33 @@ class Model_Store
 		return $arrResult[0];
 	}
     
-     public function getStoreByRefID($objID,$selectField='*') 
+    public function getStoresByCatID($objID,$selectField='*') 
+	{		
+	   
+        $objCatStore= new Model_Storecategory($this->_objConnection);
+        $arrCatStore = $objCatStore->getStorecategoryByCatID($objID);
+        $arrStoreIDs = global_common::getArrayColumn($arrCatStore,global_mapping::StoreID);
+         
+        
+		
+		$strQueryStoreIN = global_common::convertToQueryIN($arrStoreIDs);
+		
+		$selectField = $selectField? $selectField : '*';
+		$strSQL .= global_common::prepareQuery(global_common::SQL_SELECT_FREE, 
+				array($selectField, self::TBL_SL_STORE ,							
+					'WHERE  StoreID IN ('.$strQueryStoreIN.') '));
+		//echo '<br>SQL:'.$strSQL;
+		$arrResult =$this->_objConnection->selectCommand($strSQL);		
+		if(!$arrResult)
+		{
+			global_common::writeLog('get sl_store ByID:'.$strSQL,1,$_mainFrame->pPage);
+			return null;
+		}
+       
+		return $arrResult;
+	}
+    
+    public function getStoreByRefID($objID,$selectField='*') 
 	{		
 		$strSQL .= global_common::prepareQuery(global_common::SQL_SELECT_FREE, 
 				array($selectField, self::TBL_SL_STORE ,							
@@ -300,6 +335,21 @@ class Model_Store
 		return $arrResult[0];
 	}
     
+    public function getStoreByFBID($objID,$selectField='*') 
+	{		
+		$strSQL .= global_common::prepareQuery(global_common::SQL_SELECT_FREE, 
+				array($selectField, self::TBL_SL_STORE ,							
+					'WHERE  FacebookID = \''.$objID.'\' '));
+		//echo '<br>SQL:'.$strSQL;
+		$arrResult =$this->_objConnection->selectCommand($strSQL);		
+		if(!$arrResult)
+		{
+			global_common::writeLog('get sl_store ByID:'.$strSQL,1,$_mainFrame->pPage);
+			return null;
+		}
+		//print_r($arrResult);
+		return $arrResult;
+	}
     
     public function getAllStore($intPage = 0,$selectField='*',$whereClause='',$orderBy='') 
 	{		
@@ -326,7 +376,7 @@ class Model_Store
         {
             $strSQL .= global_common::prepareQuery(global_common::SQL_SELECT_FREE, 
 				array($selectField, Model_Store::TBL_SL_STORE ,							
-					$whereClause.$orderBy ));
+					$whereClause.$orderBy));
         }
 		//echo '<br>SQL:'.$strSQL;
 		$arrResult =$this->_objConnection->selectCommand($strSQL);		
@@ -426,22 +476,29 @@ class Model_Store
        // print_r($allDistricts);
        // return;
         $count = count($arrResult);
+         $objArticle = new Model_Article($this->_objConnection);
+      
         for($i=0; $i < $count; $i++)
 		{		
-		  //echo $arrResult;
-		  //print_r( $allCities);
+            //echo $arrResult;
+            //print_r( $allCities);
             //$arrResult[$i][global_mapping::CityID] = $allCities[$arrResult[$i][global_mapping::CityID]];
             $arrResult[$i][global_mapping::CityName] = $allCities[$arrResult[$i][global_mapping::CityID]][global_mapping::CityName];	
-           // print_r($arrResult[$i]);
+            // print_r($arrResult[$i]);
             //return;
-           // print_r($allCities[$arrResult[$i][global_mapping::CityID]]);
+            // print_r($allCities[$arrResult[$i][global_mapping::CityID]]);
             //break;
             
             $arrResult[$i][global_mapping::DistrictName] = $allDistricts[$arrResult[$i][global_mapping::DistrictID]][global_mapping::DistrictName];
             
             $arrResult[$i][global_mapping::Latitude] = global_common::convertToDecimal($arrResult[$i][global_mapping::Latitude])	;
             $arrResult[$i][global_mapping::Longitude] = global_common::convertToDecimal($arrResult[$i][global_mapping::Longitude])	;
-          // print_r($arrResult[$i]);
+            
+            
+            $arrArticle = $objArticle->getArticleByStoreID($arrResult[$i][global_mapping::StoreID]);
+            $shortDescription = global_common::formatPlanText($arrArticle[0][global_mapping::Content]);
+            $arrResult[$i][global_mapping::Content] = global_common::cutString2($shortDescription,0,16) ;
+            // print_r($arrResult[$i]);
             //echo $arrResult[$i][global_mapping::DistrictID];
             //echo $allDistricts[$arrResult[$i][global_mapping::DistrictID]][global_mapping::DistrictName];
             //print_r($allDistricts);
