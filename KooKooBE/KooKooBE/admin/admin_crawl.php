@@ -85,11 +85,11 @@ if($_pgR['act'] == 9999)
     //echo 'act 9999';
     $accessToken= $_facebookToken;
     $fb = new Facebook\Facebook([
-    'app_id' => $_facebookAppID,
-    'app_secret' => $_facebookSecrect,
-    'default_graph_version' => $_facebookVersion,
-    'default_access_token'=>$accessToken
-    ]);
+                                'app_id' => $_facebookAppID,
+                                'app_secret' => $_facebookSecrect,
+                                'default_graph_version' => $_facebookVersion,
+                                'default_access_token'=>$accessToken
+                                ]);
     $posts = array();
     //print_r($allStores);
     echo 'count($allStores) <br>';
