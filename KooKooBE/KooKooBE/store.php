@@ -19,8 +19,6 @@ $objDistrict = new Model_District($objConnection);
 $objStore = new Model_Store($objConnection);
 $objStoreCategory = new Model_Storecategory($objConnection);
 
-
-
 global_common::cors();
 //print_r($allStores);
 //return;
@@ -56,7 +54,8 @@ if($_pgR["act"]==1) //search
     else
     {
         //echo 'lat & long';
-        $location = array('lat' =>global_common::convertToDecimal( $_pgR["lat"]), 'long' => global_common::convertToDecimal($_pgR["lng"]));
+        $location = array('lat' =>global_common::convertToDecimal( $_pgR["lat"]), 
+        'long' => global_common::convertToDecimal($_pgR["lng"]));
     }
     //echo $address;
     //echo $address;
@@ -66,11 +65,14 @@ if($_pgR["act"]==1) //search
     $allStores = Application::getVar('allStores');
     if(!$allStores)
     {
-        $allStores = $objStore->getAllStore(0,global_mapping::StoreID.','.global_mapping::Latitude.','.global_mapping::Longitude);
+        $allStores = $objStore->getAllStore(0,global_mapping::StoreID.','.
+                global_mapping::Latitude.','.global_mapping::Longitude);
         Application::setVar('allStores',$allStores);
     }
+   
     //print_r($allStores);
     $count =0;
+    //return;
     $result = array();
     //echo $distance.'<br>';
     foreach($allStores as $item)
@@ -84,7 +86,9 @@ if($_pgR["act"]==1) //search
         //echo $location['lat'].$location['long'].$item[global_mapping::Latitude].$item[global_mapping::Longitude].'<br>';        
         //$storeDistance = global_common::getDistance($location['lat'],$location['long'],$item[global_mapping::Latitude],$item[global_mapping::Longitude]);
         $rad = M_PI / 180;
-        $storeDistance = acos(sin($item[global_mapping::Latitude]*$rad) * sin($location['lat']*$rad) + cos($item[global_mapping::Latitude]*$rad) * cos($location['lat']*$rad) * cos($item[global_mapping::Longitude]*$rad - $location['long']*$rad)) * 6371;// Kilometers
+        $storeDistance = acos(sin($item[global_mapping::Latitude]*$rad) * sin($location['lat']*$rad) + 
+                cos($item[global_mapping::Latitude]*$rad) * cos($location['lat']*$rad) * 
+                cos($item[global_mapping::Longitude]*$rad - $location['long']*$rad)) * 6371;// Kilometers
         
         //$storeDistance = 1000;
         if($storeDistance< $distance)
@@ -100,14 +104,18 @@ if($_pgR["act"]==1) //search
                 break;
         }
     }
+    //echo 'End get distance</br>';
     //return;
-        
+    //print_r($result) ;   
     usort($result, "global_common::cmpDistance");
     $result = array_slice($result,0, 10);
     $arrStoreID =  global_common::getArrayColumn($result,global_mapping::StoreID);
+    //print_r('$arrStoreID');
     //print_r($arrStoreID);
     //return;
     $stores = $objStore->getStoreByIDs($arrStoreID);
+     //echo 'End get distance</br>';
+    //return;
     //print_r($result);
     //print_r(global_common::getArrayColumn($result,global_mapping::Distance));
     //return;

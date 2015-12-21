@@ -74,9 +74,7 @@ if($_pgR["act"] == "import")
                 if(!$checkExisted)
                 {
                    $cityName = $store['City'];
-                   $city = $objCity->getCityByName($cityName);
-                   
-                   
+                   $city = $objCity->getCityByName($cityName);             
                    
                    //print_r($city);
                    if($city)

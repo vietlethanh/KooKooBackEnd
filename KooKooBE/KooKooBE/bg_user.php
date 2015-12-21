@@ -9,25 +9,30 @@ include_once('class/model_partner.php');
 $objUser = new Model_User($objConnection);
 $objReset = new Model_ResetPassword($objConnection);
 $objPartner = new Model_Partner($objConnection);
-
+//echo 'bg_user';
 global_common::cors();
 //echo '$_pgR';
 //echo $_pgR['UserName'];
 //print_r($_pgR);
 //print_r($_REQUEST);
 //print_r(file_get_contents("php://input"));
-$request_body= file_get_contents("php://input");
+//$request_body= file_get_contents("php://input");
 //  print_r($request_body);
-$_pgR = json_decode($request_body, true) ;
-//   print_r($_pgR);
-echo $_pgR["act"];
-
+//$_pgR = json_decode($request_body, true) ;
+//print_r($_pgR);
+//echo $_pgR["act"];
+$request_body= file_get_contents("php://input");
+//echo $request_body;
+if($request_body && global_common::isJson($request_body))
+{
+    $_pgR = json_decode($request_body, true) ;
+}
 if ($_pgR["act"] == Model_User::ACT_REGISTER)
 {
    
- 
+	//echo 'ACT_REGISTER';
 	$userName = $_pgR['UserName'];
-    echo $userName;
+    //echo $userName;
 	$userName = html_entity_decode($userName,ENT_COMPAT ,'UTF-8' );
 	$password = $_pgR['Password'];
 	$password = html_entity_decode($password,ENT_COMPAT ,'UTF-8' );

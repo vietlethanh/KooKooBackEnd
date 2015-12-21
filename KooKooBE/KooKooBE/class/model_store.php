@@ -26,7 +26,7 @@ class Model_Store
     const NUM_PER_PAGE                      = 15;
     
     const TBL_SL_STORE			            = 'sl_store';
-    const TBL_SL_CHECKIN     = 'sl_checkin';
+    const TBL_SL_CHECKIN     = 'sl_checkin';    
 	const SQL_INSERT_SL_STORE		= 'INSERT INTO `{0}`
 		(
 			StoreID,
@@ -447,7 +447,7 @@ class Model_Store
 		}
 		$whereClause = 'WHERE '.$strQueryIN;
 		$strSQL .= global_common::prepareQuery(global_common::SQL_SELECT_FREE,array('*',
-					self::TBL_SL_STORE,$whereClause.' '));
+					self::TBL_SL_STORE,$whereClause.' '.' limit 0,'.self::NUM_PER_PAGE));
 		//echo $strSQL;
 		$arrResult =  $this->_objConnection->selectCommand($strSQL);	
 		
