@@ -23,6 +23,10 @@ class Model_Store
     const ACT_CHANGE_PAGE					= 13;
     const ACT_SHOW_EDIT                     = 14;
     const ACT_GET                           = 15;
+    
+    const ACT_GET_CHECKED_STORE			    = 20;
+    const ACT_GET_FAVORITE_STORE			= 21;   
+            
     const NUM_PER_PAGE                      = 15;
     
     const TBL_SL_STORE			            = 'sl_store';
@@ -319,6 +323,20 @@ class Model_Store
 		return $arrResult;
 	}
     
+    public function getCheckedInStores($userID,$intPage) 
+	{			   
+        $strSQL .= global_common::prepareQuery(global_common::SQL_SELECT_FREE, 
+				array(global_mapping::StoreID.',count(*) as Count', self::TBL_SL_CHECKIN ,
+                'WHERE  UserID = '.$userID.' GROUP BY '.global_mapping::StoreID.
+                ' ORDER BY MAX('.global_mapping::CreatedDate.') DESC '
+                .' limit '.(($intPage-1)* self::NUM_PER_PAGE).','.self::NUM_PER_PAGE));
+        //echo $strSQL;
+   	    $arrCheckedStores =$this->_objConnection->selectCommand($strSQL);	
+        $arrStoreIDs = global_common::getArrayColumn($arrCheckedStores,global_mapping::StoreID);              
+		
+       
+		return $arrStoreIDs;
+	}
     public function getStoreByRefID($objID,$selectField='*') 
 	{		
 		$strSQL .= global_common::prepareQuery(global_common::SQL_SELECT_FREE, 

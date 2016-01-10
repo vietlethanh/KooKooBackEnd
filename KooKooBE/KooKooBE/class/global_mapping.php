@@ -132,5 +132,10 @@ class global_mapping
     const fbsrc		                 = 'src';    
     
     const FacebookID                = 'FacebookID';
+    
+    const TrackID                   = 'TrackID';
+    const TrackType                 = 'TrackType';
+    const TrackDate                = 'TrackDate';
+    
 }
 ?>

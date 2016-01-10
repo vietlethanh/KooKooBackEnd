@@ -23,6 +23,8 @@ class Model_Tracker
 	const ACT_CHANGE_PAGE					= 13;
 	const ACT_SHOW_EDIT                     = 14;
 	const ACT_GET                           = 15;
+    const ACT_GET_USER                      = 16;
+    
 	const NUM_PER_PAGE                      = 15;
 	
 	const TBL_SL_TRACKER		            = 'sl_tracker';
@@ -88,21 +90,22 @@ class Model_Tracker
 	
 	public function insert( $userID,$trackType,$value,$description,$trackDate)
 	{
-		//$intID = global_common::getMaxID(self::TBL_SL_TRACKER);
-		
-		$strTableName = self::TBL_SL_TRACKER;
-		$strSQL = global_common::prepareQuery(self::SQL_INSERT_SL_TRACKER,
-				array(self::TBL_SL_TRACKER,$intID,global_common::escape_mysql_string($userID),
-                global_common::escape_mysql_string($trackType),global_common::escape_mysql_string($value),
-                global_common::escape_mysql_string($description),global_common::escape_mysql_string($trackDate)));
-		
-		if (!global_common::ExecutequeryWithCheckExistedTable($strSQL,self::SQL_CREATE_TABLE_SL_TRACKER,$this->_objConnection,$strTableName))
-		{
-			//echo $strSQL;
-			global_common::writeLog('Error add SL_TRACKER:'.$strSQL,1);
-			return false;
-		}	
-		return $intID;		
+        $strTableName = self::TBL_SL_TRACKER;
+        $intID = global_common::getMaxValueofField($this->_objConnection,global_mapping::TrackID, $strTableName) + 1;
+        
+        
+        $strSQL = global_common::prepareQuery(self::SQL_INSERT_SL_TRACKER,
+        	array(self::TBL_SL_TRACKER,$intID,global_common::escape_mysql_string($userID),
+            global_common::escape_mysql_string($trackType),global_common::escape_mysql_string($value),
+            global_common::escape_mysql_string($description),global_common::nowSQL()));
+        
+        if (!global_common::ExecutequeryWithCheckExistedTable($strSQL,self::SQL_CREATE_TABLE_SL_TRACKER,$this->_objConnection,$strTableName))
+        {
+            //echo $strSQL;
+            global_common::writeLog('Error add SL_TRACKER:'.$strSQL,1);
+            return false;
+        }	
+        return $intID;		
 	}
 	
 	public function update($trackerID,$userID,$trackType,$value,$description,$trackDate)
@@ -138,6 +141,36 @@ class Model_Tracker
 		//print_r($arrResult);
 		return $arrResult[0];
 	}	
+    public function getTrackerUser($userID,$storeID) 
+	{		
+		$strSQL .= global_common::prepareQuery(global_common::SQL_SELECT_FREE, 
+				array('*', self::TBL_SL_TRACKER ,							
+					'WHERE UserID = \''.$userID.'\' And Value = \''.$storeID.'\' '));
+		//echo '<br>SQL:'.$strSQL;
+		$arrResult =$this->_objConnection->selectCommand($strSQL);		
+		if(!$arrResult)
+		{
+			global_common::writeLog('get SL_TRACKER User:'.$strSQL,1,$_mainFrame->pPage);
+			return null;
+		}
+		//print_r($arrResult);
+		return $arrResult[0];
+	}	
+    
+    public function getTrackerUserType($userID,$type,$intPage) 
+	{			   
+        $strSQL .= global_common::prepareQuery(global_common::SQL_SELECT_FREE, 
+				array('`Value` as StoreID'.',count(*) as Count', self::TBL_SL_TRACKER ,
+                'WHERE  UserID = '.$userID.' And  TrackType = \''.$type.'\' GROUP BY `Value`'.
+                ' ORDER BY MAX('.global_mapping::TrackDate.') DESC '
+                .' limit '.(($intPage-1)* self::NUM_PER_PAGE).','.self::NUM_PER_PAGE));
+        //echo $strSQL;
+        //return;
+   	    $arrTrackStores =$this->_objConnection->selectCommand($strSQL);	
+        $arrStoreIDs = global_common::getArrayColumn($arrTrackStores,'StoreID');   
+       
+		return $arrStoreIDs;
+	}
     
 	#endregion   
 }

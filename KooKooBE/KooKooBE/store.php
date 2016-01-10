@@ -10,6 +10,7 @@ include_once('class/model_city.php');
 include_once('class/model_article.php');
 include_once('class/model_user.php');
 include_once('class/model_district.php');
+include_once('class/model_tracker.php');
 
 $objArticleType = new Model_ArticleType($objConnection);
 
@@ -18,6 +19,8 @@ $objUser = new Model_User($objConnection);
 $objDistrict = new Model_District($objConnection);
 $objStore = new Model_Store($objConnection);
 $objStoreCategory = new Model_Storecategory($objConnection);
+$objTracker = new Model_Tracker($objConnection);
+
 
 global_common::cors();
 //print_r($allStores);
@@ -128,12 +131,77 @@ else if($_pgR["act"]==2) //get detail
     $store = $objStore->getStoreByID($_pgR['id']);
     echo json_encode($store);
 }
-else if($_pgR["act"]==3) //get detail
+else if($_pgR["act"]==3) //check in
 {
     $userName = $_pgR[global_mapping::UserName];
     $user = $objUser->getUserByName($userName);
     $store = $objStore->addCheckIn($_pgR[global_mapping::StoreID],$user[global_mapping::UserID],$_pgR[global_mapping::Message],$_pgR[global_mapping::Rate]);
     echo json_encode($store);
+}
+else if($_pgR["act"]==Model_Store::ACT_GET_CHECKED_STORE) //get store checked in
+{
+    //echo 'get store checked in';
+    $userName = $_pgR[global_mapping::UserName];
+    $user = $objUser->getUserByName($userName);
+    $userID = $user[global_mapping::UserID];
+    $page = $_pgR['page']? $_pgR['page']:1;
+   
+    $checkedInStores = $objStore->getCheckedInStores($userID,$page);   
+    
+    //print_r($checkedInStores);
+    //return;
+    $stores = $objStore->getStoreByIDs($checkedInStores);
+    
+    $resultStores = null;
+  	foreach($stores as $key => $info)
+	{
+		$resultStores[$info[global_mapping::StoreID]]=$info;
+		unset($stores[$key]);
+	}
+    
+    $result = array();
+    //echo $distance.'<br>';
+    foreach($checkedInStores as $item)
+    {
+        //echo '<br>ID:'.$item;
+        array_push($result,$resultStores[$item]);
+    }    
+    
+    echo json_encode($result);
+}
+else if($_pgR["act"]==Model_Store::ACT_GET_FAVORITE_STORE) //get store checked in
+{
+    //echo 'get store checked in';
+    $userName = $_pgR[global_mapping::UserName];
+    $user = $objUser->getUserByName($userName);
+    $userID = $user[global_mapping::UserID];
+    $page = $_pgR['page']? $_pgR['page']:1;
+    $type = $_pgR['type'];
+   
+    $trackerStores = $objTracker->getTrackerUserType($userID,$type,$page);   
+    //return;
+    //print_r($trackerStores);
+    //return;
+    $stores = $objStore->getStoreByIDs($trackerStores);
+    //print_r($stores);
+    return;
+    $resultStores = null;
+  	foreach($stores as $key => $info)
+	{
+		$resultStores[$info[global_mapping::StoreID]]=$info;
+		unset($stores[$key]);
+	}
+    
+    $result = array();
+    //echo $distance.'<br>';
+    foreach($trackerStores as $item)
+    {
+        //echo '<br>ID:'.$item;
+        array_push($result,$resultStores[$item]);
+    }    
+    
+    echo json_encode($result);
+    
 }
 else if($_pgR["act"]==5) //get categories
 {
