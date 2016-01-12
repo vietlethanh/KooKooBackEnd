@@ -103,7 +103,7 @@ if($_pgR["act"]==1) //search
             $item[global_mapping::Distance] = $storeDistance;
             array_push($result,$item);
             $count++;
-            if($count>=30)
+            if($count>=30000)
                 break;
         }
     }
@@ -184,7 +184,7 @@ else if($_pgR["act"]==Model_Store::ACT_GET_FAVORITE_STORE) //get store checked i
     //return;
     $stores = $objStore->getStoreByIDs($trackerStores);
     //print_r($stores);
-    return;
+    //return;
     $resultStores = null;
   	foreach($stores as $key => $info)
 	{

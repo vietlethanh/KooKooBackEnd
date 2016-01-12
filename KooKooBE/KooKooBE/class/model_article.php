@@ -218,6 +218,8 @@ class Model_Article
 					global_common::escape_mysql_string($addresses),
 					global_common::escape_mysql_string($dictricts),	global_common::escape_mysql_string($cities),$refID
 					));
+        //echo '<br>';
+        //echo $strSQL;
 		//global_common::writeLog('Error add sl_article:'.$strSQL,1);
 		if (!global_common::ExecutequeryWithCheckExistedTable($strSQL,self::SQL_CREATE_TABLE_SL_ARTICLE,$this->_objConnection,$strTableName))
 		{
@@ -232,10 +234,7 @@ class Model_Article
 		//print_r($articletype);
         foreach ($arrStoreID as $storeID)
         {
-    		foreach($articletype as $item){
-    			$strSQLValueType .= '(\''.$item.'\', \''.$articleID.'\',\''.$storeID.'\'),';
-    			
-    		}
+  			$strSQLValueType .= '(\''.$item.'\', \''.$articleID.'\',\''.$storeID.'\'),';
         }
 		$strSQLValueType = global_common::cutLast($strSQLValueType);
 		

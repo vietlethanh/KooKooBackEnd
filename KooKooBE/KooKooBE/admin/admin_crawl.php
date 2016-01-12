@@ -92,9 +92,9 @@ if($_pgR['act'] == 9999)
                                 ]);
     $posts = array();
     //print_r($allStores);
-    echo 'count($allStores) <br>';
-    echo count($allStores);
-    echo '<br>';
+    //echo 'count($allStores) <br>';
+    //echo count($allStores);
+    //echo '<br>';
     $gotPosts = array();
     foreach ($allStores as $item)
     {
@@ -102,6 +102,8 @@ if($_pgR['act'] == 9999)
         
         if(array_key_exists($item[global_mapping::FacebookID],$gotPosts) == false &&  $item[global_mapping::FacebookID])
         {
+            //echo '<br>FacebookID:';
+            //echo $item[global_mapping::FacebookID];
             $gotPosts[$item[global_mapping::FacebookID]] =$item[global_mapping::FacebookID];
             //print_r($res);;
             //echo '<br>Data<br>';
@@ -109,14 +111,55 @@ if($_pgR['act'] == 9999)
             //echo 'FacebookID:'.$item[global_mapping::FacebookID];
             $response= $fb->get('/'.$item[global_mapping::FacebookID].'?fields=id,name,posts');
             $newPosts = $response->getGraphObject() ->asArray() ;
+            
+            
+            
             array_push ($posts,$newPosts);
-            // var_dump($posts);
-            //echo $posts;
-            // echo $posts['headers:protected'];
-            //print_r($posts);  
+            
+            //print_r($newPosts);
+            foreach($newPosts[global_mapping::fbposts] as $item)
+            {
+            	$postID = $item[global_mapping::fbid];
+            	$pageID = $newPosts[global_mapping::fbid];
+                //echo '<br>$postID:';
+                //echo $postID;
+                $existedArticle = $objArticle->getArticleByRefID($postID);
+                //echo $existedArticle;
+        	   	if ($existedArticle == false)
+        		{
+                    $response= $fb->get('/'.$postID.'?fields=message,description,attachments');   
+                    $fbattachs = $response->getGraphObject() ->asArray() ;   
+                    $content = $fbattachs[global_mapping::fbmessage];
+                    $content = str_replace(array("\r\n", "\r", "\n"), '<br>', $content);        
+                    foreach($fbattachs[global_mapping::fbattachments] as $item)
+                    {
+                        $content.= '<img src="'.$item[global_mapping::fbmedia][global_mapping::fbimage][global_mapping::fbsrc].'"/>';
+                    } 
+                    $c_userInfo = $_SESSION[global_common::SES_C_USERINFO]; 
+                    $title =$fbattachs[global_mapping::fbdescription];
+            		$title = html_entity_decode($title,ENT_COMPAT ,'UTF-8' );
+            		//$content = $posts[global_mapping::fbmessage];
+            		$content = html_entity_decode($content,ENT_COMPAT ,'UTF-8' );     		
+            		
+            		$renewedNum = 0;        		
+            		$status = 1;
+                    
+            		$createdBy = $c_userInfo[global_mapping::UserID];
+            		$arrCat = global_common::splitString($catalogueID);
+                    
+                    $stores = $objStore->getStoreByFBID($pageID);
+                    $arrStoreID = global_common::getArrayColumn($stores,global_mapping::StoreID);
+                    
+            		$resultID = $objArticle->insert($title,$fileName, $content,null,$tags,$arrCat,$createdBy,
+                        $renewedNum,$companyName,
+    				    $companyAddress,$companyWebsite,$companyPhone,$adType,$startDate,$endDate,$happyDays,
+    				    $startHappyHour,$endHappyHour, $addresses,$dictricts,$cities,$status,$arrStoreID,$postID);
+                }
+            }
+            //break;
         }
     }   
-     // print_r($posts);  
+    //print_r($posts);  
 }
 
 ?>

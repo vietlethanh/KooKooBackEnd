@@ -159,11 +159,12 @@ if ($_pgR["act"] == model_Article::ACT_APPROVE )
         {
             $content.= '<img src="'.$item[global_mapping::fbmedia][global_mapping::fbimage][global_mapping::fbsrc].'"/>';
         }
-      
+        
 		$title =$posts[global_mapping::fbdescription];
 		$title = html_entity_decode($title,ENT_COMPAT ,'UTF-8' );
 		//$content = $posts[global_mapping::fbmessage];
 		$content = html_entity_decode($content,ENT_COMPAT ,'UTF-8' );
+        //echo $content;
 		$tags = $_pgR[global_mapping::Tags];
 		$tags = html_entity_decode($tags,ENT_COMPAT ,'UTF-8' );
 		$catalogueID = $_pgR[global_mapping::CatalogueID];
