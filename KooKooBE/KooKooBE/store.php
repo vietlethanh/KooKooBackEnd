@@ -39,8 +39,9 @@ if($_pgR["act"]==1) //search
     //echo $_gmapAPI;
  
     $address = $_pgR["keyword"]; 
-    //echo $address;
     $distance= $_pgR["distance"];
+    //echo $address;
+   /* 
     //echo $address;
     if($address != null  && $address!='')
     {
@@ -60,17 +61,20 @@ if($_pgR["act"]==1) //search
         $location = array('lat' =>global_common::convertToDecimal( $_pgR["lat"]), 
         'long' => global_common::convertToDecimal($_pgR["lng"]));
     }
+    */
+     $location = array('lat' =>global_common::convertToDecimal( $_pgR["lat"]), 
+        'long' => global_common::convertToDecimal($_pgR["lng"]));
     //echo $address;
     //echo $address;
      
     //print_r($location);
     //return;
-    $allStores = Application::getVar('allStores');
+    $allStores = Application::getVar('allStores'.$address);
     if(!$allStores)
     {
         $allStores = $objStore->getAllStore(0,global_mapping::StoreID.','.
-                global_mapping::Latitude.','.global_mapping::Longitude);
-        Application::setVar('allStores',$allStores);
+                global_mapping::Latitude.','.global_mapping::Longitude, '`'.global_mapping::Name.'` like \'%'.$address.'%\'');
+        Application::setVar('allStores'.$address,$allStores);
     }
    
     //print_r($allStores);
@@ -103,7 +107,7 @@ if($_pgR["act"]==1) //search
             $item[global_mapping::Distance] = $storeDistance;
             array_push($result,$item);
             $count++;
-            if($count>=30000)
+            if($count>=50)
                 break;
         }
     }
