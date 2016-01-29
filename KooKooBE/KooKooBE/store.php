@@ -40,6 +40,8 @@ if($_pgR["act"]==1) //search
  
     $address = $_pgR["keyword"]; 
     $distance= $_pgR["distance"];
+    $cat= $_pgR["cat"];
+    
     //echo $address;
    /* 
     //echo $address;
@@ -66,18 +68,36 @@ if($_pgR["act"]==1) //search
         'long' => global_common::convertToDecimal($_pgR["lng"]));
     //echo $address;
     //echo $address;
-     
+    $condition = '';
+    if($cat)
+    {
+        $condition = '`'.global_mapping::MainCategoryId.'` ='.$cat;
+    }
+    else
+    {
+        $cat='0';
+    }
+    if($address)
+    {
+        if($condition)
+        {
+            $condition.= ' AND ';
+        }
+        $condition .= '`'.global_mapping::Name.'` like \'%'.$address.'%\'';
+    }
+    //echo  $condition;
     //print_r($location);
     //return;
-    $allStores = Application::getVar('allStores'.$address);
+    $allStores = Application::getVar('allStores_'.$cat.'_'.$address);
     if(!$allStores)
     {
         $allStores = $objStore->getAllStore(0,global_mapping::StoreID.','.
-                global_mapping::Latitude.','.global_mapping::Longitude, '`'.global_mapping::Name.'` like \'%'.$address.'%\'');
-        Application::setVar('allStores'.$address,$allStores);
+                global_mapping::Latitude.','.global_mapping::Longitude,$condition);
+        Application::setVar('allStores_'.$cat.'_'.$address,$allStores);
     }
-   
+  
     //print_r($allStores);
+    //return;
     $count =0;
     //return;
     $result = array();
@@ -114,19 +134,27 @@ if($_pgR["act"]==1) //search
     //echo 'End get distance</br>';
     //return;
     //print_r($result) ;   
-    usort($result, "global_common::cmpDistance");
-    $result = array_slice($result,0, 10);
-    $arrStoreID =  global_common::getArrayColumn($result,global_mapping::StoreID);
-    //print_r('$arrStoreID');
-    //print_r($arrStoreID);
     //return;
-    $stores = $objStore->getStoreByIDs($arrStoreID);
-     //echo 'End get distance</br>';
-    //return;
-    //print_r($result);
-    //print_r(global_common::getArrayColumn($result,global_mapping::Distance));
-    //return;
-    echo json_encode($stores);
+    if($result)
+    {
+        usort($result, "global_common::cmpDistance");
+        $result = array_slice($result,0, 10);
+        $arrStoreID =  global_common::getArrayColumn($result,global_mapping::StoreID);
+        //print_r('$arrStoreID');
+        //print_r($arrStoreID);
+        //return;
+        $stores = $objStore->getStoreByIDs($arrStoreID);
+         //echo 'End get distance</br>';
+        //return;
+        //print_r($result);
+        //print_r(global_common::getArrayColumn($result,global_mapping::Distance));
+        //return;
+        echo json_encode($stores);
+    }
+    else
+    {
+        echo '';
+    }
     //echo '[{"Active":true,"Address1":"1095 Judge Ely Blvd","Address2":"","CS_StoreID":14,"City":"Abilene","StoreName":"United Supermarkets","StoreID":545,"LocationName":"","State":"TX","Zipcode":"79601","PhoneNumber":"(325) 677-8527","Latitude":32.4617645,"Longitude":-99.7052135},
     //{"Active":true,"Address1":"1095 Judge Ely Blvd","Address2":"","CS_StoreID":15,"City":"Abilene","StoreName":"United Supermarkets","StoreID":546,"LocationName":"","State":"TX","Zipcode":"79601","PhoneNumber":"(325) 677-8527","Latitude":32.4616645,"Longitude":-99.7062135}]';
 }
