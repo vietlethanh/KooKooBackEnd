@@ -124,9 +124,9 @@ class Model_User
 	
 	#region Public Functions
 	
-	public function register($userName,$password,$fullname,$birthDate,$email,$sex,$externalID, $externalType)
+	public function register($userName,$password,$fullname,$birthDate,$email,$sex,$externalID, $externalType,$avatar)
 	{
-		return $this->insert($userName,$password,$fullname,$birthDate,null,null,$email,$sex,null,null,null,null,null,null,$externalID, $externalType);
+		return $this->insert($userName,$password,$fullname,$birthDate,null,null,$email,$sex,null,null,null,$avatar,null,null,$externalID, $externalType);
 	}
 	
 	public function login($userName,$password)

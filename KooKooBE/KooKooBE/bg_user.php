@@ -35,6 +35,7 @@ if ($_pgR["act"] == Model_User::ACT_REGISTER)
     //echo $userName;
 	$userName = html_entity_decode($userName,ENT_COMPAT ,'UTF-8' );
 	$password = $_pgR['Password'];
+    $$password = 'Kookoo2015';
 	$password = html_entity_decode($password,ENT_COMPAT ,'UTF-8' );
 	
 	$fullname = $_pgR['FullName'];
@@ -45,6 +46,8 @@ if ($_pgR["act"] == Model_User::ACT_REGISTER)
 	$email = html_entity_decode($email,ENT_COMPAT ,'UTF-8' );
 	$sex = $_pgR['Sex'];
 	$sex = html_entity_decode($sex,ENT_COMPAT ,'UTF-8' );
+	$avatar = $_pgR['Avatar'];
+	$avatar = html_entity_decode($avatar,ENT_COMPAT ,'UTF-8' );
 	$externalID =  $_pgR['ExternalID'];
     $externalType =  $_pgR['ExternalType'];
 	if($objUser->checkExistUserName($userName)){
@@ -65,7 +68,7 @@ if ($_pgR["act"] == Model_User::ACT_REGISTER)
 				);
 		return;
 	}
-	$resultID = $objUser->register($userName,$password,$fullname,$birthDate,$email,$sex,$externalID, $externalType);
+	$resultID = $objUser->register($userName,$password,$fullname,$birthDate,$email,$sex,$externalID, $externalType,$avatar);
 	if ($resultID)
 	{
 		//login after register
