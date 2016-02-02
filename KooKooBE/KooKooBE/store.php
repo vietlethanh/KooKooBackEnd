@@ -85,7 +85,7 @@ if($_pgR["act"]==1) //search
         }
         $condition .= '`'.global_mapping::Name.'` like \'%'.$address.'%\'';
     }
-    echo  $condition;
+    //echo  $condition;
     //print_r($location);
     //return;
     $allStores = Application::getVar('allStores_'.$cat.'_'.$address);
