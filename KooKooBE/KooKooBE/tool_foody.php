@@ -5,8 +5,8 @@ require('config/globalconfig.php');
 //echo '<br>';
 //echo microtime();
 //return;
-$cityid = 219;//219: da_namg; 217: ho-chi-minh, 218: ha-noi
-$cityName = "da-nang";//
+$cityid = 217;//219: da_namg; 217: ho-chi-minh, 218: ha-noi
+$cityName = "ho-chi-minh";//
 
 
 //setcookie("FOODY.AUTH", "F471F391D1F7C977BD5C55B82492F9EB2B218FAAFFB1DA0C859A6EA53AF4166BE161FAA72B3D199B9A828C802160708414541B5064FCBACEF253038ABE6831728970A876601790EF6592E6E40267EFA6312BD83F70CA119D5FD05AF4A09CC4F2B278BD5563936C8863FC11F19C882F2A1F1D5E725FF3B5A1727983F2F6011B4B82607C626E8DF10C08D4CC9AEA9CD44C218A6C4A699AA74E262186D35567A05C6F3FAAC40AD19E1527CC554E10C1B56AD827BE0D329A15A1AA65A3F9A73BB1E9D472185298F0800D390FA626EBDAD6FCFCDF01A8693C3132D854C49D988505EB");
@@ -15,7 +15,7 @@ $cityName = "da-nang";//
 /*
 $catID = 1;
 $pageIndex=6;  
-$hostStores =  'http://www.foody.vn/da-nang/dia-diem?ds=Restaurant&vt=row&st=1&dt=undefined&c=3&lat=10.7720308&lon=106.70269479999999&page=10&provinceId=219&categoryId=3&append=true';
+$hostStores =  'http://www.foody.vn/ho-chi-minh/dia-diem?ds=Restaurant&vt=row&st=1&dt=undefined&c=3&lat=10.7720308&lon=106.70269479999999&page=10&provinceId=219&categoryId=3&append=true';
 $headerStores = array(  
                 'Host: www.foody.vn',
                 'Connection: keep-alive',
@@ -23,15 +23,15 @@ $headerStores = array(
                 'CSP: active',
                 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36',
                 'X-Requested-With: XMLHttpRequest',
-                'X-Foody-User-Token: c3eeacff-a9d4-45b0-a80b-1de315a3594f',
+                'X-Foody-User-Token:  9d0c3de3-dbc4-41a5-8334-9252ede6c077',
                 //'Cache-Control: no-cache',
              
-                'Referer: http://www.foody.vn/da-nang/quan-an',
+                'Referer: http://www.foody.vn/ho-chi-minh/quan-an',
                 'Accept-Encoding: gzip, deflate, sdch',
-                'Accept-Language: en-US,en;q=0.5'
-                //'Cookie: flg=vn; ASP.NET_SessionId=w1pwfv01xno1sixk2wqxtvwp; __RequestVerificationToken=QXh8ezc4yMSkKxZgBi4waCJJkRuXEPDbL3ISEKdZXXxmTlJTrQJ4UD5S4TT0Vv6eM48t1Eqy5Wbare1yfv4OtJWiEfCtbvnBFt7HL3CYzxM1; gcat=entertain; floc=217'
+                'Accept-Language: en-US,en;q=0.5',
+                //'Cookie: flg=vn; ASP.NET_SessionId=patvstdo4fbgspgdrwikle4e; __RequestVerificationToken=9d0c3de3-dbc4-41a5-8334-9252ede6c077; gcat=entertain; floc=217'
                 );
-$cookieHeader = 'flg=vn; FOODY.AUTH=C3A7361CD865C440FE8F3674931EE29D6A1E589874D5C1C1F8A4D45F95A702B6CD8B03BCBE082B937F78C6A2E4EEDA05BEB11DA86136AC5DC8C8A46741CAD0150BFE64DD91535C19DF4DA2AEA6096706829B63BA0DC43C89DFD0946DB40E9059579EB214DD16D6C6D8D369CB024F8B519D174815D216BF0C34B1AF1D27F41AD30FA28C86D14CAC2945CCE2BE2B6E8313A2A350C1F6D0904CD2A27F7D6821166AA67617D092DC1036A4A3A707F63CF7DE663271E71ADA1D658988470B26E754DA84D87B3F08EF80410595DD4214414D4537624136A48193B1508FC0B72B6B142F; f_idientifier=88f4b3c5-3af9-4006-b6b5-8f0c32ec5518; fbm_395614663835338=base_domain=.foody.vn; ASP.NET_SessionId=5w4ukcmlb5evfgcai1sowzko; __RequestVerificationToken=lK4EP8A1GtGTnDyJMPkL24S-X9KHdTnyqLh7ilRC6CJXJr568sogADLJ-WuZF6QHGBQDKacyfspAcZE9AzC-_PWNBHZYWReqqY6d_kuTPJY1; _gat=1; _gat_ads=1; _ga=GA1.2.1476510592.1445846765; fbsr_395614663835338=ESulHYQzMC-1jgxIxsxjGXW4YKJsZX1XFVKWfBw9ZDs.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUUE5TG9oWkpJa0hyckRBM1Atd29iTG9MaWV6Q21FQ0FBRUlvLW1zYmQ1allmUUV5NmZOUVM4djRfVW1paE9aMVE0ZnhLLVBqRXJPbjhUQ0Y3cUtOcDgxYmlBX0VCLVV4bnpsU1d5eU9sbHpZSE81NmNXQ2o2d1lSUUIzVm9nQTZYTFNxTTZCdTkxcW5YOVNudnp5R0dFSmJ6UkJXVDkwUDU5QnJTZHgxSHU3X1llZGJHVmJyNGlrWVhydk1PdENFV0gyVkp3cUQ5NktGclZKWlE3X2Q2X1M2aG10dTF5QmtmaFRVRXB3RlFWWnpDdHYxeFprNzgzdkNvSnVDWU1jZDhtNzNEZlBYM2dRR3pHT0tjQ3JyUGJxTXZEaXJabl9uVDZRR0hGMFlHTVZLTEYzNmxLZ0xpM0dNbkJjOUpYS0plZDhJZWZRd2pILU94aElGaUZjNnNfbiIsImlzc3VlZF9hdCI6MTQ0NjEzODExOSwidXNlcl9pZCI6IjQzNTYxNDU1NjYyNDQwMCJ9; pda-close=1; gcat=www; FOODY.RequestVerificationToken=c3eeacff-a9d4-45b0-a80b-1de315a3594f; floc=219; _pos.coords=10.7720308-106.70269479999999';
+$cookieHeader = 'flg=vn; ASP.NET_SessionId=patvstdo4fbgspgdrwikle4e; gcat=food; floc=217; FOODY.AUTH=4C570C6EC4F0CE54432BDE46511940101605CC450363214566F54425C7369354A15DDB54861CBA0A062DBC227B00BA2C4EDD012031EAE8669A3AADEB6E1DE43B99D7AE303ACEF43151DBF12A401DD738F6CDF0E23142313521071A3D889ADC7343851F95534FE4D655735DD14C331BD3D4415A57BCF5B7DE79F6091D74826B9B9BC367CA4CAF45A284C336B61D6451F781F8E0299CB224ED14D5CF6F45691613E8F351C03B43E09E549678BE9F4F1E3311B4FADEDFEE698EAD1F9AE27D0D59C80164FE3060DCA1A73F8C9CB993C239DF8B0242FD61B724E330B0694613F76BAB; FOODY.RequestVerificationToken=9d0c3de3-dbc4-41a5-8334-9252ede6c077; fbm_395614663835338=base_domain=.foody.vn; _ga=GA1.2.1461401499.1457490421; _gat=1; _gat_ads=1; fbsr_395614663835338=w7ufXZyNTTFPagz45NawdAzn1U2eEIh4zxCCeiJNZW0.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUUI5M3hGc2lod2x5S202QzU3Q2pzYV9OWTN1TWpYb1dwQzVXVTdYNHVnazgteEJSSktRRFVZZEtuSWFGZHFyMGFiWDZqc0pjX0cwekkyWThSSVg5V3JVQ1NkbHJBLXhxS0hmVnBnZjZ5ZjJPUmNValRCZTNEcUxrb19KbjlIQWpmc2hsa2xSWDlQbExzS0N1WlNsZ2JieWpENHVwcTdXa1pNc29lOGx3Y09FSkFOVG5lajNPcXlpNzNON1BSZjJ6MUllTmc0enJvcGFQa1lJQ1ZZb2hwSU5KZkhuQkJwR0RiUUxkQW9yUXhOZ0NoMHpER2lEZDB4TXlVMkRHTXhQZWFXQV9od182NUNKc3pDajVtYTN5Q1ExRFhHbjd5SktVNVVvUGExcGE2ZXh3M3o1R01iYW9lMUdqdXNRQUVjTkgxSThMVzZ4Z2FvTU1TX3RzcUx0XzY5eSIsImlzc3VlZF9hdCI6MTQ1OTg4NDI5OCwidXNlcl9pZCI6IjEwMDAwMTg1NjA3NTI5OCJ9';
 $jsonStores = global_common::getDataUrl($hostStores,$headerStores, $cookieHeader); 
 echo $jsonStores;
 return;
@@ -46,14 +46,18 @@ $headerCategory = array('Accept	:application/json, text/javascript, */*; q=0.01'
                 'User-Agent	:Mozilla/5.0 (Windows NT 6.3; WOW64; rv:39.0) Gecko/20100101 Firefox/39.0',
                 'X-Foody-User-Token	:null',
                 'X-Requested-With	:XMLHttpRequest');
-$hostUrlCat = 'http://travel.foody.vn/Directory/GetSearchFilter?ds=Restaurant&vt=row&st=1&dt=undefined&c=7&lat=10.746903&lon=106.67629199999999&filter=category&provinceId='.$cityid;
-
-$jsonCategories = global_common::getDataUrl($hostUrlCat,null);
+$hostUrlCat = 'http://foody.vn/Directory/GetSearchFilter?ds=Restaurant&vt=row&st=1&dt=undefined&c=7&lat=10.746903&lon=106.67629199999999&filter=category&provinceId='.$cityid;
+//echo $hostUrlCat;
+$jsonCategories = global_common::getDataUrl($hostUrlCat,null,null);
+//echo $jsonCategories; 
+//return;
+//echo $jsonCategories;
 $folder = global_common::FOLDER_FILES_OTHER;
 global_common::writeToFile($folder.'Foody/All_Foody_Categories.txt',$jsonCategories);
+
 echo 'Got Foody categories';
 $allCategories = json_decode($jsonCategories, true);
-//var_dump($allCategories); \
+//var_dump($allCategories); 
 //return;
 $allCategories = $allCategories['allCategories'];
 echo '<br>';
@@ -81,15 +85,16 @@ foreach($allCategories as $item)
                             'CSP: active',
                             'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36',
                             'X-Requested-With: XMLHttpRequest',
-                            'X-Foody-User-Token: c3eeacff-a9d4-45b0-a80b-1de315a3594f',
-                            //'Cache-Control: no-cache',
-                         
+                            //replace new token
+                            'X-Foody-User-Token: 9d0c3de3-dbc4-41a5-8334-9252ede6c077',
+                            'Cache-Control: no-cache',                         
                             'Referer: http://www.foody.vn/'.$cityName.'/quan-an',
                             'Accept-Encoding: gzip, deflate, sdch',
                             'Accept-Language: en-US,en;q=0.5'
                             );
             //$cookieHeader = 'flg=vn; ASP.NET_SessionId=w1pwfv01xno1sixk2wqxtvwp; __RequestVerificationToken=QXh8ezc4yMSkKxZgBi4waCJJkRuXEPDbL3ISEKdZXXxmTlJTrQJ4UD5S4TT0Vv6eM48t1Eqy5Wbare1yfv4OtJWiEfCtbvnBFt7HL3CYzxM1; gcat=entertain; floc=217';
-            $cookieHeader = 'flg=vn; FOODY.AUTH=C3A7361CD865C440FE8F3674931EE29D6A1E589874D5C1C1F8A4D45F95A702B6CD8B03BCBE082B937F78C6A2E4EEDA05BEB11DA86136AC5DC8C8A46741CAD0150BFE64DD91535C19DF4DA2AEA6096706829B63BA0DC43C89DFD0946DB40E9059579EB214DD16D6C6D8D369CB024F8B519D174815D216BF0C34B1AF1D27F41AD30FA28C86D14CAC2945CCE2BE2B6E8313A2A350C1F6D0904CD2A27F7D6821166AA67617D092DC1036A4A3A707F63CF7DE663271E71ADA1D658988470B26E754DA84D87B3F08EF80410595DD4214414D4537624136A48193B1508FC0B72B6B142F; f_idientifier=88f4b3c5-3af9-4006-b6b5-8f0c32ec5518; fbm_395614663835338=base_domain=.foody.vn; ASP.NET_SessionId=5w4ukcmlb5evfgcai1sowzko; __RequestVerificationToken=lK4EP8A1GtGTnDyJMPkL24S-X9KHdTnyqLh7ilRC6CJXJr568sogADLJ-WuZF6QHGBQDKacyfspAcZE9AzC-_PWNBHZYWReqqY6d_kuTPJY1; _gat=1; _gat_ads=1; _ga=GA1.2.1476510592.1445846765; fbsr_395614663835338=ESulHYQzMC-1jgxIxsxjGXW4YKJsZX1XFVKWfBw9ZDs.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUUE5TG9oWkpJa0hyckRBM1Atd29iTG9MaWV6Q21FQ0FBRUlvLW1zYmQ1allmUUV5NmZOUVM4djRfVW1paE9aMVE0ZnhLLVBqRXJPbjhUQ0Y3cUtOcDgxYmlBX0VCLVV4bnpsU1d5eU9sbHpZSE81NmNXQ2o2d1lSUUIzVm9nQTZYTFNxTTZCdTkxcW5YOVNudnp5R0dFSmJ6UkJXVDkwUDU5QnJTZHgxSHU3X1llZGJHVmJyNGlrWVhydk1PdENFV0gyVkp3cUQ5NktGclZKWlE3X2Q2X1M2aG10dTF5QmtmaFRVRXB3RlFWWnpDdHYxeFprNzgzdkNvSnVDWU1jZDhtNzNEZlBYM2dRR3pHT0tjQ3JyUGJxTXZEaXJabl9uVDZRR0hGMFlHTVZLTEYzNmxLZ0xpM0dNbkJjOUpYS0plZDhJZWZRd2pILU94aElGaUZjNnNfbiIsImlzc3VlZF9hdCI6MTQ0NjEzODExOSwidXNlcl9pZCI6IjQzNTYxNDU1NjYyNDQwMCJ9; pda-close=1; gcat=www; FOODY.RequestVerificationToken=c3eeacff-a9d4-45b0-a80b-1de315a3594f; floc='.$cityID.'; _pos.coords=10.7720308-106.70269479999999';
+            //Replace new cookie
+            $cookieHeader = 'flg=vn; ASP.NET_SessionId=patvstdo4fbgspgdrwikle4e; gcat=food; floc=217; FOODY.AUTH=4C570C6EC4F0CE54432BDE46511940101605CC450363214566F54425C7369354A15DDB54861CBA0A062DBC227B00BA2C4EDD012031EAE8669A3AADEB6E1DE43B99D7AE303ACEF43151DBF12A401DD738F6CDF0E23142313521071A3D889ADC7343851F95534FE4D655735DD14C331BD3D4415A57BCF5B7DE79F6091D74826B9B9BC367CA4CAF45A284C336B61D6451F781F8E0299CB224ED14D5CF6F45691613E8F351C03B43E09E549678BE9F4F1E3311B4FADEDFEE698EAD1F9AE27D0D59C80164FE3060DCA1A73F8C9CB993C239DF8B0242FD61B724E330B0694613F76BAB; FOODY.RequestVerificationToken=9d0c3de3-dbc4-41a5-8334-9252ede6c077; fbm_395614663835338=base_domain=.foody.vn; _ga=GA1.2.1461401499.1457490421; _gat=1; _gat_ads=1; fbsr_395614663835338=w7ufXZyNTTFPagz45NawdAzn1U2eEIh4zxCCeiJNZW0.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUUI5M3hGc2lod2x5S202QzU3Q2pzYV9OWTN1TWpYb1dwQzVXVTdYNHVnazgteEJSSktRRFVZZEtuSWFGZHFyMGFiWDZqc0pjX0cwekkyWThSSVg5V3JVQ1NkbHJBLXhxS0hmVnBnZjZ5ZjJPUmNValRCZTNEcUxrb19KbjlIQWpmc2hsa2xSWDlQbExzS0N1WlNsZ2JieWpENHVwcTdXa1pNc29lOGx3Y09FSkFOVG5lajNPcXlpNzNON1BSZjJ6MUllTmc0enJvcGFQa1lJQ1ZZb2hwSU5KZkhuQkJwR0RiUUxkQW9yUXhOZ0NoMHpER2lEZDB4TXlVMkRHTXhQZWFXQV9od182NUNKc3pDajVtYTN5Q1ExRFhHbjd5SktVNVVvUGExcGE2ZXh3M3o1R01iYW9lMUdqdXNRQUVjTkgxSThMVzZ4Z2FvTU1TX3RzcUx0XzY5eSIsImlzc3VlZF9hdCI6MTQ1OTg4NDI5OCwidXNlcl9pZCI6IjEwMDAwMTg1NjA3NTI5OCJ9';
             // echo '<br> Host: ';
              //echo $hostStores;
              //echo '<br>';
@@ -101,7 +106,7 @@ foreach($allCategories as $item)
             echo 'Got Foody stores of cat_'.$catID.'_page_'.$pageIndex;
             $allStores = json_decode($jsonStores, true);
             //sleep 10 second
-            sleep(40 * (1436885463%9 +1 ));
+            sleep(30 * (1436885463%9 +1 ));
             //break;
             // return;
         }

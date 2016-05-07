@@ -71,7 +71,14 @@ if($_pgR["act"]==1) //search
     $condition = '';
     if($cat && $cat!='undefined')
     {
-        $condition = '`'.global_mapping::MainCategoryId.'` ='.$cat;
+        $childCats = $objArticleType->getAllArticleType(0,'*',global_mapping::ParentID. '='.$cat);
+        if(count($childCats)>0)
+        {
+            $arrCatID = global_common::getArrayColumn($childCats,global_mapping::ArticleTypeID);
+            $condition=  '`'.global_mapping::MainCategoryId.'` IN ('. global_common::convertToQueryIN($arrCatID).')';
+        }
+        else
+            $condition = '`'.global_mapping::MainCategoryId.'` ='.$cat;
     }
     else
     {
@@ -236,9 +243,8 @@ else if($_pgR["act"]==Model_Store::ACT_GET_FAVORITE_STORE) //get store checked i
     
 }
 else if($_pgR["act"]==5) //get categories
-{
-    
-    $allCats = $objArticleType->getAllArticleType();
+{    
+    $allCats = $objArticleType->getAllArticleType(0,'*','ParentID=0','ArticleTypeID asc');
     echo json_encode($allCats);
 }
 

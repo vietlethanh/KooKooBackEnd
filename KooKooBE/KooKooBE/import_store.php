@@ -55,14 +55,19 @@ if($_pgR["act"] == "import")
     $allFiles = scandir($folder);
     
     //print_r($allFiles);
+    //return;
     foreach($allFiles as $file)
     {
+        echo 'Process...'. $file.'<br>';
         if(strpos($file, 'Foody_stores_of_cat') !== FALSE)
         {
             $jsonStores = global_common::readFromFile($folder.$file);
+            //echo $jsonStores;
             $rootElements = json_decode($jsonStores, true);
-            $stores = $rootElements['restaurants'];
+            $stores = $rootElements['searchItems'];
             //print_r($stores);
+            //return;
+            echo 'Start import stores with file :'.$file.' Count:'.count($stores).'<br>';
             foreach($stores as $store)
             {
                 //print_r($store);
@@ -139,24 +144,26 @@ if($_pgR["act"] == "import")
                    }
                    //return;
                 }
-                
+                else
+                {
+                    echo 'Exist reference id:'.$storeRefID.'<br>';
+                }
                 if(count($store["SubItems"])>0)
                 {
+                     echo 'Start import file :'.$storeName.' Count:'.count($store["SubItems"]).'<br>';
                      $subStores = $store["SubItems"];
                      $store = null;
                      foreach($subStores as $substore)
                      {
                       
-                        $storeRefID = '7009-'.$substore['Id'];
+                        $subStoreRefID = '7009-'.$substore['Id'];
                         $storeName = $substore['Name'];
-                        $checkExisted = $objStore->getStoreByRefID($storeRefID);
+                        $checkExisted = $objStore->getStoreByRefID($subStoreRefID);
                         //print_r($checkExisted); ;
                         if(!$checkExisted)
                         {
                            $cityName = $substore['City'];
                            $city = $objCity->getCityByName($cityName);
-                           
-                           
                            
                            //print_r($city);
                            if($city)
@@ -196,7 +203,7 @@ if($_pgR["act"] == "import")
                                        $substore['PicturePath'],
                                        '',
                                        $createdBy,global_common::nowSQL(),
-                                       $updatedBy,global_common::nowSQL(),null,null,$storeRefID);
+                                       $updatedBy,global_common::nowSQL(),null,null,$subStoreRefID);
                                                        
                            if($result)
                            {
@@ -220,7 +227,12 @@ if($_pgR["act"] == "import")
                                 echo '<br>';
                            }
                         }
+                        else
+                        {
+                            echo 'Exist reference id:'.$subStoreRefID.'<br>';
+                        }
                      }
+                   
                 }
             }
             //return;
