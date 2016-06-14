@@ -411,18 +411,18 @@ class db_connection extends mysqli
 					'USER_NAME'=>'root',
 					'PASSWORD'=>'',
 					'PERSISTENT'=>true);*/
-		/*return array('HOST'=>'localhost',
+		return array('HOST'=>'localhost',
 				'PORT'=>'3306',
-				'DB_NAME'=>'kookoo',
+				'DB_NAME'=>'koo999d8_kookoo',
 				'USER_NAME'=>'root',
 				'PASSWORD'=>'',
-				'PERSISTENT'=>true);*/
-   	    return array('HOST'=>'db04.serverhosting.vn',
+				'PERSISTENT'=>true);
+   	    /*return array('HOST'=>'db04.serverhosting.vn',
 				'PORT'=>'3306',
 				'DB_NAME'=>'koo999d8_kookoo',
 				'USER_NAME'=>'koo999d8',
 				'PASSWORD'=>'Kookoo2015',
-				'PERSISTENT'=>true);
+				'PERSISTENT'=>true);*/
 	}
 	
 	#end region
